@@ -18,19 +18,16 @@ template< typename T > using matrix3d_t = vector< matrix_t<T> >;
 
 // function declarations
 template< typename T >
-matrix_t<T> get_block(const matrix_t<T> &matrix, int i, int j, int n=BLK_SIZE);
-template< typename T >
 matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n=BLK_SIZE);
 template< typename T >
 void concat_blocks(matrix_t<T> &result, matrix3d_t<T> &blocks);
-Image load(char *filename);
-matrix_t<unsigned char> image2matrix(Image &image);
+matrix_t<double> image2matrix(Image &image);
 template< typename T>
 void matrix2image(const matrix_t<T> &matrix, Image &image);
 template< typename T >
 void embed(matrix_t<T> &matrix, vector<T> &watermark, int strength, int iteration, int size=BLK_SIZE);
 template< typename T >
-vector<T> extract(matrix_t<T> &matrix, int strength, int size=BLK_SIZE);
+void extract(matrix_t<T> &matrix, vector<T> &watermark, int strength, int size=BLK_SIZE);
 template< typename T >
 void mat_init(matrix_t<T> &matrix, int size);
 template< typename T >
@@ -46,28 +43,14 @@ void vector_concat(const vector<T> &vec, vector<T> &result);
 template< typename T >
 void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_list);
 template< typename T >
-double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm);
+long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm);
 template< typename T >
 double nc(const vector<T> &orig, const vector<T> &extr);
 template< typename T > 
 void print(const matrix_t<T> &matrix);
 
 
-// get n x n block from matrix on i,j position
-// throws out_of_range on error
-template< typename T >
-matrix_t<T> get_block(const matrix_t<T> &matrix, int i, int j, int n/*=BLK_SIZE*/)
-{
-    matrix_t<T> block(n);
-
-    for(int k = 0; k < n; ++k)
-        for(int l = 0; l < n; ++l)
-            block[k].emplace_back(matrix.at(k+i).at(l+j));
-
-    return block;
-}
-
-// ???
+// get BLK_SIZE x BLK_SIZE blocks from matrix
 template< typename T >
 matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n/*=BLK_SIZE*/)
 {
@@ -76,6 +59,7 @@ matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n/*=BLK_SIZE*/)
     for (int i = 0; i < matrix.size(); i += n)
         for (int j = 0; j < matrix.size(); j += n) {
             block.clear();
+            block.resize(n);
             for(int k = 0; k < n; ++k)
                 for(int l = 0; l < n; ++l)
                     block[k].emplace_back(matrix.at(k+i).at(l+j));
@@ -91,42 +75,31 @@ void concat_blocks(matrix_t<T> &result, matrix3d_t<T> &blocks)
     int i = 0;
     int j = 0;
     for(const auto block : blocks) {
-        if (j < result.size()) {
+        for (int k = 0; k < block.size(); ++k)
+            for (int l = 0; l < block.size(); ++l)
+                result.at(k+i).at(l+j) = block.at(k).at(l);
+        if (j < result.size() - BLK_SIZE) {
             j += BLK_SIZE;
         }
         else {
             j = 0;
-            i++;
+            if (i < result.size() - BLK_SIZE)
+                i += BLK_SIZE;
         }
-        for (int k = 0; k < block.size(); ++k)
-            for (int l = 0; l < block.size(); ++l)
-                result.at(k+i).at(l+j) = block.at(k).at(l);    
     }
-
-    // for (int k = 0; k < block.size(); ++k)
-    //     for (int l = 0; l < block.size(); ++l)
-    //         result.at(k+i).at(l+j) = block.at(k).at(l);
 }
 
-// load input image
-Image load(char *filename)
-{
-    Image image(filename);
-    return image;
-}
-
-// transform Image objet to matrix_t
+// transform Image objet into matrix_t type
 // every value is in range <0-255>
 //   0     - black
 //   255   - white
-// template< typename T>
-matrix_t<unsigned char> image2matrix(Image &image)
+matrix_t<double> image2matrix(Image &image)
 {
     int w = image.columns();
     int h = image.rows();
     int n = w; // image is n x n
     unsigned char *pixels = new unsigned char[w*h];
-    matrix_t<unsigned char> mat_pixels(n);
+    matrix_t<double> mat_pixels(n);
     // save intensities of pixels into pixels matrix
     image.write(0, 0, w, h, "I", CharPixel, pixels);
     int k = 0;
@@ -151,7 +124,7 @@ void matrix2image(const matrix_t<T> &matrix, Image &image)
     for (auto &row : matrix) {
         for (auto value : row) {
             *pixels = value * QuantumRange / 255;
-            pixels += 2;
+            pixels += image.channels();
         }
     }
     // write changes to pixels
@@ -167,32 +140,27 @@ void embed(matrix_t<T> &matrix, vector<T> &watermark, int strength, int iteratio
     double t2 = strength/4;
 
     for (int i = 0; i < size; ++i) {
-        // oposite conditition beacuse 0 is white and 255 is black
+        // inverse conditition beacuse 0 is white and 255 is black
         if (watermark.at(i+(size*iteration)) != 0)
             matrix.at(0).at(i) = matrix.at(0).at(i) - fmod(matrix.at(0).at(i), strength)  + t1;
         else
             matrix.at(0).at(i) = matrix.at(0).at(i) - fmod(matrix.at(0).at(i), strength)  + t2;
     }
-    // return matrix;
 }
 
 template< typename T >
-vector<T> extract(matrix_t<T> &matrix, int strength, int size/*=BLK_SIZE*/)
+void extract(matrix_t<T> &matrix, vector<T> &watermark, int strength, int size/*=BLK_SIZE*/)
 {
-    vector<T> watermark;
     // threshold values
     double t1 = 3*strength/4;
     double t2 = strength/4;
 
-    // NAOPAK podmienka -> kvoli tomu ze 0-cierna, 255-biela???
     for (int i = 0; i < size; ++i) {
-        if (fmod(matrix.at(0).at(i), strength) > ((t1+t2)/2))
+        if (fmod(matrix.at(0).at(i), strength) > ((t1+t2)/2.0))
             watermark.push_back(255);
         else
             watermark.push_back(0);
     }
-
-    return watermark;
 }
 
 template< typename T >
@@ -266,17 +234,24 @@ void vector_concat(const vector<T> &vec, vector<T> &result)
 template< typename T >
 void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_list)
 {
+    // transpose input matrix
     matrix = mat_transpose(matrix);
     matrix_t<double> v(matrix.size());
     matrix_t<double> r(matrix.size());
     matrix_t<double> q(matrix.size());
+    // initialize matrixes to zeroes
     mat_init(q, matrix.size());
     mat_init(r, matrix.size());
     v = matrix;
+
     for (int i = 0; i < matrix.size(); ++i) {
-        r[i][i] = normalize(v[i]);
-        for (int j = 0; j < matrix.size(); ++j)
-            q[i][j] = v[i][j]/r[i][i];
+        r[i][i] = normalize(v[i]);  // normalize vector
+        for (int j = 0; j < matrix.size(); ++j) {
+            if (r[i][i] == 0)   // avoid division by zero
+                q[i][j] = 0;
+            else
+                q[i][j] = v[i][j]/r[i][i];
+        }
         for (int j = i+1; j < matrix.size(); ++j)
         {
             r[i][j] = dot_product(q[i], v[j]);
@@ -285,20 +260,13 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_l
         }
     }
 
+    // transpose Q matrix
     q = mat_transpose(q);
+    // transpose input matrix to original state
     matrix = mat_transpose(matrix);
+    // store computed R,Q matrixes for all blocks
     q_list.emplace_back(q);
     r_list.emplace_back(r);
-    // cout << "Q:" << endl;
-    // print(q);
-    // cout << "R:" << endl;
-    // print(r);
-    // cout << "--------------test equality----------" << endl;
-    // cout << "Original" << endl;
-    // print(matrix);
-    // cout << "Multiplied" << endl;
-    // print(mat_multiply(q, r, matrix.size()));
-    // cout << "-------------------------------------" << endl;
 }
 
 template< typename T >
@@ -311,7 +279,7 @@ void mat_round(matrix_t<T> &matrix)
 
 // peak signal to noise ratio
 template< typename T >
-double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm)
+long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm)
 {
     double psnr = 0;
     double mse = 0; // mean square error
@@ -319,6 +287,7 @@ double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm)
     for (int i = 0; i < orig.size(); ++i)
         for (int j = 0; j < orig.size(); ++j)
             mse += pow((orig[i][j] - wm[i][j]), 2.0);
+
     mse = mse/(orig.size()*orig.size());
     psnr = 20*log10(255/sqrt(mse));
 
@@ -344,7 +313,7 @@ double nc(const vector<T> &orig, const vector<T> &extr)
 template< typename T > 
 void print(const matrix_t<T> &matrix)
 {
-    for(const auto& row : matrix) {
+    for(const auto &row : matrix) {
         for(double value : row)
             cout << value << " ";
         cout << endl;
@@ -357,103 +326,83 @@ int main(int argc, char **argv)
     InitializeMagick(*argv);
 
     Image image;
-    matrix_t<unsigned char> matrix(image.columns());
-    matrix_t<unsigned char> original(image.columns());
-    print(matrix);
-    // load input image
+    Image watermark;
+    // print(matrix);
+    // load input image and watermark
     image.read(argv[1]);
-    matrix = image2matrix(image);
-    original = matrix;
-    print(matrix);
+    watermark.read(argv[2]);
 
-    // for (int i = 0; i < image.rows(); ++i) {
-    //     for (int j = 0; j < image.columns(); ++j) {
-    //         matrix.at(i).at(j) = (unsigned char)((i < 4) ? 0 : 255);
-    //     }
-    // }
-
-    // vector<unsigned char> v = {0,255,0,255,0,255,0,255};
-    // embed(matrix, v, atoi(argv[2]), 0, 8);
-    // print(matrix);
-    // print(original);
-    // vector<unsigned char> vv(8);
-    // vv = extract(matrix, atoi(argv[2]), 8);
-    // for (auto value : vv) {
-    //     cout << +value << " ";
-    // }
-    // cout << endl;
-
-
-    // print(matrix);
-    // cout << "psnr: " << psnr(original, matrix) << endl;
-    // cout << "nc: " << nc(v, vv) << endl;
-
-    matrix_t<double> gram_test(original.size());
-    for(int i = 0; i < original.size(); ++i)
-        for(int j = 0; j < original.size(); ++j)
-            gram_test[i].emplace_back(original.at(i).at(j));
-    cout << "gram----------" << endl;
-    // print(gram_test);
+    matrix3d_t<double> blocks(image.columns()*image.rows()/(BLK_SIZE*BLK_SIZE));
+    matrix_t<double> matrix(image.columns());
+    matrix_t<double> original(image.columns());
+    matrix_t<double> watermark_m(watermark.columns());
+    vector<double> watermark_v;
+    vector<double> ext_watermark_v;
     matrix3d_t<double> q_list;
     matrix3d_t<double> r_list;
     matrix3d_t<double> q_list_out;
     matrix3d_t<double> r_list_out;
-    // print(gram_test);
-    gram_schmidt(gram_test, q_list, r_list);
+    matrix = image2matrix(image);
+    watermark_m = image2matrix(watermark);
+    original = matrix;
 
-    vector<double> vvv = {0,255,0,255,0,255,0,255};
-    vector<double> vvvv(8);
-    matrix_t<double> gram_embedded(gram_test);
-    // q_list[0] = mat_transpose(q_list[0]);
-    // cout << "R-list[0]: " << endl;
-    // print(r_list[0]);
-    // print(q_list[0]);
-    // gram_embedded = mat_multiply(q_list[0], r_list[0], 8);
-    // print(gram_embedded);
-    embed(r_list[0], vvv, atoi(argv[2]), 0, 8);
-    // cout << "R-list[0] embedded: " << endl;
-    // print(r_list[0]);
-    gram_embedded = mat_multiply(q_list[0], r_list[0], 8);
+    // put watermark to vector
+    for (const auto &row : watermark_m)
+        for (double value : row)
+            watermark_v.emplace_back(value);
 
-    gram_schmidt(gram_embedded, q_list_out, r_list_out);
-    print(gram_test);
-    print(gram_embedded);
-    mat_round(gram_embedded);
-    print(gram_embedded);
+    // print(matrix);
 
-    vvvv = extract(r_list_out[0], atoi(argv[2]), 8);
-    for (auto value : vvvv) {
-        cout << value << " ";
+    // divide image into blocks
+    blocks = get_blocks(matrix);
+
+    // iterate through all blocks
+    for (int i = 0; i < blocks.size(); ++i) {
+        // QR decomposition usinf gram-schmidt process on all blocks
+        gram_schmidt(blocks[i], q_list, r_list);
+        
+        // embed watermark in R matrix
+        embed(r_list[i], watermark_v, atoi(argv[3]), i);
+
+        // extract watermark from image
+        extract(r_list[i], ext_watermark_v, atoi(argv[3]));
+
+        // multiply Q and R matrixes
+        blocks[i] = mat_multiply(q_list[i], r_list[i]);
+        // round to 8 bytes
+        mat_round(blocks[i]);
     }
-    cout << endl;
-    for (auto value : vvv) {
-        cout << value << " ";
-    }
-    cout << endl;
+    
 
-    cout << "psnr: " << psnr(gram_test, gram_embedded) << endl;
-    cout << "nc: " << nc(vvv, vvvv) << endl;
-
-    // matrix_t<double> mat{ {12, -51, 4}, {6, 167, -68}, {-4, 24, -41} };
-    // // mat_init(mat, 3);
-    // // for (int i = 0; i < 3; ++i)
-    // // {
-    // //     for (int j = 0; j < 3; ++j)
-    // //     {
-    // //         mat[i][j] = (i+1)*(j+1);
-    // //     }
-    // // }
+    // concatenate blocks
+    concat_blocks(matrix, blocks);
+    matrix2image(matrix, image);
+    // image.quality(30);
+    // save watermarked image
+    image.write("watermarked.jpg");
 
 
-    // print(mat);
-    // mat = mat_transpose(mat);
-    // gram_schmidt(mat, q_list, r_list);
-    // print(mat);
-    // mat = mat_multiply(mat, mat, 3);
-    // print(mat);
+    // extract watermark from image
+    // for (auto r : r_list)
+    //     extract(r, ext_watermark_v, atoi(argv[3]));
 
+    // PSNR and NC
+    cout << "psnr: " << psnr(original, matrix) << endl;
+    cout << "nc: " << nc(watermark_v, ext_watermark_v) << endl;
+    int count = 0;
+    for (int i = 0; i < watermark_v.size(); ++i)
+        if (watermark_v[i] != ext_watermark_v[i])
+            count++;
+    cout << "count: " << count << endl;
 
-    matrix2image(gram_embedded, image);
-    image.write("test4.jpg");
+    // vector to matrix
+    for (int i = 0, k = 0; i < watermark.columns(); ++i)
+        for (int j = 0; j < watermark.rows(); ++j, ++k)
+            watermark_m[i][j] = ext_watermark_v[k];
+
+    // save extracted watermark
+    matrix2image(watermark_m, watermark);
+    watermark.write("ext_watermark.jpg");
+
     return 0;
 }
