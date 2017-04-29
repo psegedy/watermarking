@@ -140,14 +140,17 @@ int main(int argc, char **argv)
         concat_blocks(matrix, blocks);
         matrix2image(matrix, image);
 
-        // vector to matrix
-        for (int i = 0, k = 0; i < watermark.columns(); ++i)
-            for (int j = 0; j < watermark.rows(); ++j, ++k)
-                watermark_m[i][j] = ext_watermark_v[k];
-
         // save extracted watermark
-        matrix2image(watermark_m, watermark);
-        watermark.write(get<arg_watermark_out>(args));
+        if (get<arg_extract>(args)) {
+            // vector to matrix
+            for (int i = 0, k = 0; i < watermark.columns(); ++i)
+                for (int j = 0; j < watermark.rows(); ++j, ++k)
+                    watermark_m[i][j] = ext_watermark_v[k];
+
+            // save extracted watermark
+            matrix2image(watermark_m, watermark);
+            watermark.write(get<arg_watermark_out>(args));
+        }
 
         // --statistics
         if (get<arg_stat>(args)) {
