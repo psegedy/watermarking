@@ -316,7 +316,20 @@ int main(int argc, char **argv)
 
 void print_help()
 {
-    cout << "HELP MEEE" << endl;
+    cout << "--help - show this help" << endl;
+    cout << "--input FILE - define input image" << endl;
+    cout << "--output FILE - define output file - default: watermarked.jpg" << endl;
+    cout << "--wm-input FILE - watermark in image file" << endl;
+    cout << "--wm-output FILE - file where save extracted watermark - default: extracted.jpg" << endl;
+    cout << "--strength NUMBER - set watermarking strength" << endl;
+    cout << "--quality NUMBER - set compression level for output (watermarked) image in range <0-100>" << endl;
+    cout << "--embed - embedding" << endl;
+    cout << "--extract - extraction" << endl;
+    cout << "--attack - do all attacks, save images to attacks/ directory" << endl;
+    cout << "--statistics - show NC of extracted and original watermark and PSNR of original and watermarked image, use with --extract or without --embed and --extract" << endl;
+    cout << endl;
+    cout << "--input and --wm-input are required" << endl;
+    cout << "If there aren't --embed and --extract, it runs embedding of watermark and then extraction of embedded watermark" << endl;
 }
 
 void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, string name, int strength, double scale/*=1*/)
@@ -661,8 +674,7 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_l
             else
                 q[i][j] = v[i][j]/r[i][i];
         }
-        for (int j = i+1; j < matrix.size(); ++j)
-        {
+        for (int j = i+1; j < matrix.size(); ++j) {
             r[i][j] = dot_product(q[i], v[j]);
             for (int k = 0; k < matrix.size(); ++k)
                 v[j][k] -= r[i][j] * q[i][k];
