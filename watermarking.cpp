@@ -56,32 +56,19 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_l
 template< typename T >
 long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm);
 template< typename T >
-double nc(const vector<T> &orig, const vector<T> &extr);
+double nc(vector<T> &orig, vector<T> &extr);
 template< typename T > 
 void print(const matrix_t<T> &matrix);
 args_t parse_arguments(int argc, char **argv);
+void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, string name, int strength, double scale=1);
 void print_help();
 
 
 int main(int argc, char **argv)
 {
-    args_t args = parse_arguments(argc, argv);
-    cout << "tuple size: " << tuple_size<decltype(args)>::value << endl;
-
-    cout << arg_names[0] << ": " << get<0>(args) << endl;
-    cout << arg_names[1] << ": " << get<1>(args) << endl;
-    cout << arg_names[2] << ": " << get<2>(args) << endl;
-    cout << arg_names[3] << ": " << get<3>(args) << endl;
-    cout << arg_names[4] << ": " << get<4>(args) << endl;
-    cout << arg_names[5] << ": " << get<5>(args) << endl;
-    cout << arg_names[6] << ": " << get<6>(args) << endl;
-    cout << arg_names[7] << ": " << get<7>(args) << endl;
-    cout << arg_names[8] << ": " << get<8>(args) << endl;
-    cout << arg_names[9] << ": " << get<9>(args) << endl;
-
     InitializeMagick(*argv);
 
-
+    args_t args = parse_arguments(argc, argv);
     Image image;
     // print(matrix);
     // load input image and watermark
@@ -152,6 +139,163 @@ int main(int argc, char **argv)
             watermark.write(get<arg_watermark_out>(args));
         }
 
+        // --attack
+        if (get<arg_attack>(args)) {
+            // matrix_t<double> embedded = matrix;
+            Image attack = image;
+            // scale
+            Geometry scale75 = Geometry("75x75+0+0%");
+            Geometry scale125 = Geometry("125x125+0+0%");
+
+            attack.modifyImage();
+            attack.gaussianBlur(1, 1);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "gaussianBlur", get<arg_strength>(args));
+
+            // next attack
+            attack = image;
+            attack.modifyImage();
+            attack.blur();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "blur", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.addNoise(GaussianNoise);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "GaussianNoise", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.addNoise(UniformNoise);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "UniformNoise", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.addNoise(LaplacianNoise);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "LaplacianNoise", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.addNoise(PoissonNoise);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "PoissonNoise", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.medianFilter();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "medianFilter", get<arg_strength>(args));
+
+            // average filter
+            attack = image;
+            attack.modifyImage();
+            const double mask[][3] = {
+              {1/9.0, 1/9.0, 1/9.0},
+              {1/9.0, 1/9.0, 1/9.0},
+              {1/9.0, 1/9.0, 1/9.0}
+            };
+            attack.convolve(3, &mask[0][0]);
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "averageFilter", get<arg_strength>(args));
+
+
+            attack = image;
+            attack.modifyImage();
+            attack.enhance();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "enhance", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.despeckle();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "despeckle", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.sharpen();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "sharpen", get<arg_strength>(args));
+
+            attack = image;
+            attack.modifyImage();
+            attack.equalize();
+            attack.syncPixels();
+            do_attack(attack, watermark, watermark_v, "equalize", get<arg_strength>(args));
+
+            Image watermark2 = watermark;
+            attack = image;
+            attack.modifyImage();
+            watermark2.modifyImage();
+            watermark2.scale(scale75);
+            attack.scale(scale75);
+            attack.syncPixels();
+            watermark2.syncPixels();
+            do_attack(attack, watermark2, watermark_v, "scale75", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
+
+            watermark2 = watermark;
+            attack = image;
+            attack.modifyImage();
+            watermark2.modifyImage();
+            watermark2.scale(scale125);
+            attack.scale(scale125);
+            attack.syncPixels();
+            watermark2.syncPixels();
+            do_attack(attack, watermark2, watermark_v, "scale125", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
+            
+            // rotation
+            watermark2 = watermark;
+            attack = image;
+            attack.modifyImage();
+            watermark2.modifyImage();
+            attack.rotate(5);
+            attack.resize(Geometry(560, 560));
+            watermark2.resize(Geometry(280, 140));
+            attack.syncPixels();
+            watermark2.syncPixels();
+            do_attack(attack, watermark2, watermark_v, "rotation5", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
+
+            attack = image;
+            watermark2 = watermark;
+            attack.modifyImage();
+            watermark2.modifyImage();
+            attack.rotate(10);
+            attack.resize(Geometry(600, 600));
+            watermark2.resize(Geometry(300, 150));
+            attack.syncPixels();
+            watermark2.syncPixels();
+            do_attack(attack, watermark2, watermark_v, "rotation10", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
+
+            // JPEG
+            attack = image;
+            attack.quality(70);
+            attack.write("attacks/jpeg70.jpg");
+            attack.read("attacks/jpeg70.jpg");
+            do_attack(attack, watermark, watermark_v, "jpeg70", get<arg_strength>(args));
+
+            attack = image;
+            attack.quality(50);
+            attack.write("attacks/jpeg50.jpg");
+            attack.read("attacks/jpeg50.jpg");
+            do_attack(attack, watermark, watermark_v, "jpeg50", get<arg_strength>(args));
+
+            attack = image;
+            attack.quality(30);
+            attack.write("attacks/jpeg30.jpg");
+            attack.read("attacks/jpeg30.jpg");
+            do_attack(attack, watermark, watermark_v, "jpeg30", get<arg_strength>(args));
+
+            attack = image;
+            attack.quality(20);
+            attack.write("attacks/jpeg20.jpg");
+            attack.read("attacks/jpeg20.jpg");
+            do_attack(attack, watermark, watermark_v, "jpeg20", get<arg_strength>(args));
+
+        }
+
         // --statistics
         if (get<arg_stat>(args)) {
             // PSNR and NC
@@ -173,6 +317,52 @@ int main(int argc, char **argv)
 void print_help()
 {
     cout << "HELP MEEE" << endl;
+}
+
+void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, string name, int strength, double scale/*=1*/)
+{
+    matrix_t<double> matrix_attack = image2matrix(attack);
+    matrix3d_t<double> q_list;
+    matrix3d_t<double> r_list;
+    matrix3d_t<double> blocks(attack.columns()*attack.rows()/(BLK_SIZE*BLK_SIZE));
+    vector<double> ext_watermark_v;
+    matrix_t<double> watermark_m;
+    watermark_m = image2matrix(watermark);
+
+    // divide image into blocks
+    blocks = get_blocks(matrix_attack);
+    for (int i = 0; i < blocks.size(); ++i) {
+        // QR decomposition usinf gram-schmidt process on all blocks
+        gram_schmidt(blocks[i], q_list, r_list);
+        // extract watermark from image
+        extract(r_list[i], ext_watermark_v, strength);
+    }
+    // vector to matrix
+    for (int i = 0, k = 0; i < watermark.columns(); ++i)
+        for (int j = 0; j < watermark.rows(); ++j, ++k)
+            watermark_m[i][j] = ext_watermark_v[k];
+
+    // save extracted watermark
+    matrix2image(watermark_m, watermark);
+    watermark.write("attacks/" + name + "-wm.jpg");
+    attack.write("attacks/" + name + ".jpg");
+    cout << name << endl;
+
+    // resize extracted watermark to default watermark size to compare original and extracted
+    if (scale != 1) {
+        watermark.modifyImage();
+        watermark.resize(Geometry(watermark.columns()/scale, watermark.rows()/scale));
+        watermark.syncPixels();
+
+        watermark_m = image2matrix(watermark);
+        // put watermark to vector
+        ext_watermark_v.clear();
+        for (const auto &row : watermark_m)
+            for (double value : row)
+                ext_watermark_v.emplace_back(value);
+    }
+    cout << "NC: " << nc(watermark_v, ext_watermark_v) << endl;
+    cout << "-----------------" << endl;
 }
 
 // parse command line arguments
@@ -263,6 +453,11 @@ args_t parse_arguments(int argc, char **argv)
         get<arg_embed>(args) = true;
         get<arg_extract>(args) = true;
     }
+    if (get<arg_attack>(args) == true)
+        if (get<arg_embed>(args) == false || get<arg_extract>(args) == false) {
+            cerr << "There should be --embed and --extract when using --attack" << endl;
+            exit(2);
+        }
 
     return args;
 }
@@ -355,8 +550,8 @@ template< typename T >
 void embed(matrix_t<T> &matrix, vector<T> &watermark, int strength, int iteration, int size/*=BLK_SIZE*/)
 {
     // threshold values
-    double t1 = 3*strength/4;
-    double t2 = strength/4;
+    double t1 = 3*strength/4.0;
+    double t2 = strength/4.0;
 
     for (int i = 0; i < size; ++i) {
         // inverse conditition beacuse 0 is white and 255 is black
@@ -372,8 +567,8 @@ template< typename T >
 void extract(matrix_t<T> &matrix, vector<T> &watermark, int strength, int size/*=BLK_SIZE*/)
 {
     // threshold values
-    double t1 = 3*strength/4;
-    double t2 = strength/4;
+    double t1 = 3*strength/4.0;
+    double t2 = strength/4.0;
 
     for (int i = 0; i < size; ++i) {
         if (fmod(matrix.at(0).at(i), strength) > ((t1+t2)/2.0))
@@ -512,14 +707,23 @@ long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm)
 // normalized correlation
 // between original and extracted watermarmark
 template< typename T >
-double nc(const vector<T> &orig, const vector<T> &extr)
+double nc(vector<T> &orig, vector<T> &extr)
 {
     double sum1 = 0;
     double sum2 = 0;
 
     for (int i = 0; i < orig.size(); ++i) {
-        sum1 += (orig[i] * extr[i])/65025;
-        sum2 += pow(orig[i]/255, 2.0);
+        if (orig[i] == 0)
+            orig[i] = -1;
+        else
+            orig[i] = 1;
+        if (extr[i] == 0)
+            extr[i] = -1;
+        else
+            extr[i] = 1;
+            
+        sum1 += (orig[i] * extr[i]);
+        sum2 += pow(orig[i], 2.0);
     }
 
     return sum1/sum2;
