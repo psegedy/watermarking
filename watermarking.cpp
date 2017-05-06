@@ -1,67 +1,7 @@
-#include <vector>
-#include <Magick++.h> 
-#include <iostream>
-#include <cstdlib> //atoi
-#include <cmath>
-#include <regex>
-#include <string>
-#include <tuple>
-
-#define BLK_SIZE 8
-#define OUTPUT "watermarked.jpg"
-#define WM_OUTPUT "extracted.jpg"
-#define QUALITY 100
-#define STRENGTH 24
+#include "watermarking.hpp"
 
 using namespace std; 
 using namespace Magick;
-
-// matrix_t<T> type
-template< typename T > using matrix_t = vector< vector<T> >;
-
-// matrix3d_t<T> type
-template< typename T > using matrix3d_t = vector< matrix_t<T> >;
-
-enum arg_enum { arg_help = 0, arg_input, arg_output, arg_watermark_in, arg_watermark_out, arg_strength, arg_quality, arg_embed, arg_extract, arg_attack, arg_stat };
-vector<string> arg_names = { "--help", "--input", "--output", "--wm-input", "--wm-output", "--strength", "--quality", "--embed", "--extract", "--attack", "--statistics" };
-// args_t type for command line arguments
-using args_t = tuple<bool, string, string, string, string, int, int, bool, bool, bool, bool>;
-
-// function declarations
-template< typename T >
-matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n=BLK_SIZE);
-template< typename T >
-void concat_blocks(matrix_t<T> &result, matrix3d_t<T> &blocks);
-matrix_t<double> image2matrix(Image &image);
-template< typename T>
-void matrix2image(const matrix_t<T> &matrix, Image &image);
-template< typename T >
-void embed(matrix_t<T> &matrix, vector<T> &watermark, int strength, int iteration, int size=BLK_SIZE);
-template< typename T >
-void extract(matrix_t<T> &matrix, vector<T> &watermark, int strength, int size=BLK_SIZE);
-template< typename T >
-void mat_init(matrix_t<T> &matrix, int size);
-template< typename T >
-void mat_round(matrix_t<T> &matrix);
-template< typename T >
-matrix_t<T> mat_multiply(matrix_t<T> &a, matrix_t<T> &b, int size=BLK_SIZE);
-template< typename T >
-matrix_t<T> mat_transpose(matrix_t<T> &matrix);
-template< typename T >
-double dot_product(const vector<T> &vec1, const vector<T> &vec2);
-template< typename T >
-double normalize(const vector<T> &vec);
-template< typename T >
-void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_list);
-template< typename T >
-long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm);
-template< typename T >
-double nc(vector<T> &orig, vector<T> &extr);
-template< typename T > 
-void print(const matrix_t<T> &matrix);
-args_t parse_arguments(int argc, char **argv);
-void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, string name, int strength, double scale=1);
-void print_help();
 
 
 int main(int argc, char **argv)
@@ -106,7 +46,7 @@ int main(int argc, char **argv)
         blocks = get_blocks(matrix);
 
         // iterate through all blocks
-        for (int i = 0; i < blocks.size(); ++i) {
+        for (size_t i = 0; i < blocks.size(); ++i) {
             // QR decomposition usinf gram-schmidt process on all blocks
             gram_schmidt(blocks[i], q_list, r_list);
             if (get<arg_embed>(args))
@@ -130,8 +70,8 @@ int main(int argc, char **argv)
         // save extracted watermark
         if (get<arg_extract>(args)) {
             // vector to matrix
-            for (int i = 0, k = 0; i < watermark.columns(); ++i)
-                for (int j = 0; j < watermark.rows(); ++j, ++k)
+            for (size_t i = 0, k = 0; i < watermark.columns(); ++i)
+                for (size_t j = 0; j < watermark.rows(); ++j, ++k)
                     watermark_m[i][j] = ext_watermark_v[k];
 
             // save extracted watermark
@@ -329,7 +269,7 @@ void print_help()
     cout << "--statistics - show NC of extracted and original watermark and PSNR of original and watermarked image, use with --extract or without --embed and --extract" << endl;
     cout << endl;
     cout << "--input and --wm-input are required" << endl;
-    cout << "If there aren't --embed and --extract, it runs embedding of watermark and then extraction of embedded watermark" << endl;
+    cout << "If --embed and --extract are not specified, it runs embedding of watermark and then extraction of embedded watermark" << endl;
 }
 
 void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, string name, int strength, double scale/*=1*/)
@@ -344,15 +284,15 @@ void do_attack(Image &attack, Image &watermark, vector<double> &watermark_v, str
 
     // divide image into blocks
     blocks = get_blocks(matrix_attack);
-    for (int i = 0; i < blocks.size(); ++i) {
+    for (size_t i = 0; i < blocks.size(); ++i) {
         // QR decomposition usinf gram-schmidt process on all blocks
         gram_schmidt(blocks[i], q_list, r_list);
         // extract watermark from image
         extract(r_list[i], ext_watermark_v, strength);
     }
     // vector to matrix
-    for (int i = 0, k = 0; i < watermark.columns(); ++i)
-        for (int j = 0; j < watermark.rows(); ++j, ++k)
+    for (size_t i = 0, k = 0; i < watermark.columns(); ++i)
+        for (size_t j = 0; j < watermark.rows(); ++j, ++k)
             watermark_m[i][j] = ext_watermark_v[k];
 
     // save extracted watermark
@@ -409,7 +349,7 @@ args_t parse_arguments(int argc, char **argv)
             exit(0);
         }
         // other arguments
-        for (int j = 1; j < regexes.size(); ++j) {
+        for (size_t j = 1; j < regexes.size(); ++j) {
             if (regex_match(argv[i], regexes[j])) {
                 if (i < arg_quality && argc < (i+1)) {
                     print_help();
@@ -481,8 +421,8 @@ matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n/*=BLK_SIZE*/)
 {
     matrix_t<T> block(n);
     matrix3d_t<T> blocks;
-    for (int i = 0; i < matrix.size(); i += n)
-        for (int j = 0; j < matrix.size(); j += n) {
+    for (size_t i = 0; i < matrix.size(); i += n)
+        for (size_t j = 0; j < matrix.size(); j += n) {
             block.clear();
             block.resize(n);
             for(int k = 0; k < n; ++k)
@@ -498,11 +438,11 @@ matrix3d_t<T> get_blocks(const matrix_t<T> &matrix, int n/*=BLK_SIZE*/)
 template< typename T >
 void concat_blocks(matrix_t<T> &result, matrix3d_t<T> &blocks)
 {
-    int i = 0;
-    int j = 0;
+    size_t i = 0;
+    size_t j = 0;
     for(const auto block : blocks) {
-        for (int k = 0; k < block.size(); ++k)
-            for (int l = 0; l < block.size(); ++l)
+        for (size_t k = 0; k < block.size(); ++k)
+            for (size_t l = 0; l < block.size(); ++l)
                 result.at(k+i).at(l+j) = block.at(k).at(l);
         if (j < result.size() - BLK_SIZE) {
             j += BLK_SIZE;
@@ -623,8 +563,8 @@ matrix_t<T> mat_transpose(matrix_t<T> &matrix)
 {
     matrix_t<T> transposed(matrix.size());
     mat_init(transposed, matrix.size());
-    for (int i = 0; i < matrix.size(); ++i)
-        for (int j = 0; j < matrix.size(); ++j)
+    for (size_t i = 0; i < matrix.size(); ++i)
+        for (size_t j = 0; j < matrix.size(); ++j)
             transposed[j][i] = matrix[i][j];
 
     return transposed;
@@ -635,7 +575,7 @@ template< typename T >
 double dot_product(const vector<T> &vec1, const vector<T> &vec2)
 {
     double sum = 0;
-    for (int i = 0; i < vec1.size(); ++i)
+    for (size_t i = 0; i < vec1.size(); ++i)
         sum += vec1[i] * vec2[i];
     return sum;
 }
@@ -666,17 +606,17 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_l
     mat_init(r, matrix.size());
     v = matrix;
 
-    for (int i = 0; i < matrix.size(); ++i) {
+    for (size_t i = 0; i < matrix.size(); ++i) {
         r[i][i] = normalize(v[i]);  // normalize vector
-        for (int j = 0; j < matrix.size(); ++j) {
+        for (size_t j = 0; j < matrix.size(); ++j) {
             if (r[i][i] == 0)   // avoid division by zero
                 q[i][j] = 0;
             else
                 q[i][j] = v[i][j]/r[i][i];
         }
-        for (int j = i+1; j < matrix.size(); ++j) {
+        for (size_t j = i+1; j < matrix.size(); ++j) {
             r[i][j] = dot_product(q[i], v[j]);
-            for (int k = 0; k < matrix.size(); ++k)
+            for (size_t k = 0; k < matrix.size(); ++k)
                 v[j][k] -= r[i][j] * q[i][k];
         }
     }
@@ -694,8 +634,8 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list, matrix3d_t<T> &r_l
 template< typename T >
 void mat_round(matrix_t<T> &matrix)
 {
-    for (int i = 0; i < matrix.size(); ++i)
-        for (int j = 0; j < matrix.size(); ++j)
+    for (size_t i = 0; i < matrix.size(); ++i)
+        for (size_t j = 0; j < matrix.size(); ++j)
             matrix[i][j] = round(matrix[i][j]);
 }
 
@@ -706,8 +646,8 @@ long double psnr(const matrix_t<T> &orig, const matrix_t<T> &wm)
     double psnr = 0;
     double mse = 0; // mean square error
 
-    for (int i = 0; i < orig.size(); ++i)
-        for (int j = 0; j < orig.size(); ++j)
+    for (size_t i = 0; i < orig.size(); ++i)
+        for (size_t j = 0; j < orig.size(); ++j)
             mse += pow((orig[i][j] - wm[i][j]), 2.0);
 
     mse = mse/(orig.size()*orig.size());
@@ -724,7 +664,7 @@ double nc(vector<T> &orig, vector<T> &extr)
     double sum1 = 0;
     double sum2 = 0;
 
-    for (int i = 0; i < orig.size(); ++i) {
+    for (size_t i = 0; i < orig.size(); ++i) {
         if (orig[i] == 0)
             orig[i] = -1;
         else
