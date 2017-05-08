@@ -87,126 +87,126 @@ int main(int argc, char **argv)
             Geometry scale75 = Geometry("75x75+0+0%");
             Geometry scale125 = Geometry("125x125+0+0%");
 
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.gaussianBlur(1, 1);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "gaussianBlur", get<arg_strength>(args));
 
             // next attack
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.blur();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "blur", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.addNoise(GaussianNoise);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "GaussianNoise", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.addNoise(UniformNoise);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "UniformNoise", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.addNoise(LaplacianNoise);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "LaplacianNoise", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.addNoise(PoissonNoise);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "PoissonNoise", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.medianFilter();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "medianFilter", get<arg_strength>(args));
 
             // average filter
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             const double mask[][3] = {
               {1/9.0, 1/9.0, 1/9.0},
               {1/9.0, 1/9.0, 1/9.0},
               {1/9.0, 1/9.0, 1/9.0}
             };
             attack.convolve(3, &mask[0][0]);
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "averageFilter", get<arg_strength>(args));
 
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.enhance();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "enhance", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.despeckle();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "despeckle", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.sharpen();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "sharpen", get<arg_strength>(args));
 
             attack = image;
-            attack.modifyImage();
+            // attack.modifyImage();
             attack.equalize();
-            attack.syncPixels();
+            // attack.syncPixels();
             do_attack(attack, watermark, watermark_v, "equalize", get<arg_strength>(args));
 
             Image watermark2 = watermark;
             attack = image;
-            attack.modifyImage();
-            watermark2.modifyImage();
+            // attack.modifyImage();
+            // watermark2.modifyImage();
             watermark2.scale(scale75);
             attack.scale(scale75);
-            attack.syncPixels();
-            watermark2.syncPixels();
+            // attack.syncPixels();
+            // watermark2.syncPixels();
             do_attack(attack, watermark2, watermark_v, "scale75", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
 
             watermark2 = watermark;
             attack = image;
-            attack.modifyImage();
-            watermark2.modifyImage();
+            // attack.modifyImage();
+            // watermark2.modifyImage();
             watermark2.scale(scale125);
             attack.scale(scale125);
-            attack.syncPixels();
-            watermark2.syncPixels();
+            // attack.syncPixels();
+            // watermark2.syncPixels();
             do_attack(attack, watermark2, watermark_v, "scale125", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
             
             // rotation
             watermark2 = watermark;
             attack = image;
-            attack.modifyImage();
-            watermark2.modifyImage();
+            // attack.modifyImage();
+            // watermark2.modifyImage();
             attack.rotate(5);
             attack.resize(Geometry(560, 560));
             watermark2.resize(Geometry(280, 140));
-            attack.syncPixels();
-            watermark2.syncPixels();
+            // attack.syncPixels();
+            // watermark2.syncPixels();
             do_attack(attack, watermark2, watermark_v, "rotation5", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
 
             attack = image;
             watermark2 = watermark;
-            attack.modifyImage();
-            watermark2.modifyImage();
+            // attack.modifyImage();
+            // watermark2.modifyImage();
             attack.rotate(10);
             attack.resize(Geometry(600, 600));
             watermark2.resize(Geometry(300, 150));
-            attack.syncPixels();
-            watermark2.syncPixels();
+            // attack.syncPixels();
+            // watermark2.syncPixels();
             do_attack(attack, watermark2, watermark_v, "rotation10", get<arg_strength>(args), (attack.columns()/(double)image.columns()));
 
             // JPEG
@@ -667,9 +667,9 @@ double nc(vector<T> &orig, vector<T> &extr)
     for (size_t i = 0; i < orig.size(); ++i) {
         if (orig[i] == 0)
             orig[i] = -1;
-        else
+        else if (orig[i] == 255)
             orig[i] = 1;
-        if (extr[i] == 0)
+        if (extr[i] < 128) // do thresholding due to possible resizing
             extr[i] = -1;
         else
             extr[i] = 1;
