@@ -1,0 +1,36 @@
+% Tento soubor nahraďte vlastním souborem s přílohami (nadpisy níže jsou pouze pro příklad)
+% This file should be replaced with your file with an appendices (headings below are examples only)
+
+% Umístění obsahu paměťového média do příloh je vhodné konzultovat s vedoucím
+% Placing of table of contents of the memory media here should be consulted with a supervisor
+\chapter{Obsah priloženého pamäťového média}
+
+\chapter{Návod na inštaláciu}
+Program pri svojej činnosti využíva knižnicu ImageMagick vo verzii 7.0.5-4. Aktuálnu verziu tejto knižnice si môžete stiahnuť na webovej stránke \url{www.imagemagick.org} v sekcii download\footnote{ImageMagick \url{https://www.imagemagick.org/script/download.php}}.
+
+Nainštalovanú verziu knižnice ImageMagick zistíte príkazom:
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}
+identify -version
+\end{lstlisting}
+\end{tabular}
+\end{center}
+
+Pred kompiláciou programu bude možno potrebné nastaviť premennú prostredia\\ \verb|PKG_CONFIG_PATH| príkazom
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+\end{lstlisting}
+\end{tabular}
+\end{center}
+
+Následne je možné skompilovať program pomocou príkazu {\tt make}, ktorý vytvorí spustiteľný program s názvom {\tt watermarking} a priečinok {\tt attacks} do ktorého budú uložené obrázky po prevedení útokov pomocou prepínača \verb|--attack|. Príklad spustenia programu
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}
+./watermarking --input lena.jpg --wm-input fit.pbm
+\end{lstlisting}
+\end{tabular}
+\end{center}
