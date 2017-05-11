@@ -15,7 +15,7 @@
 %   projekt-01-kapitoly-chapters.tex - obsah práce / the thesis content
 %   projekt-30-prilohy-appendices.tex - přílohy / appendices
 %==============================================================================
-\documentclass[slovak]{fitthesis}
+\documentclass[slovak,zadani]{fitthesis}
 %\documentclass[]{fitthesis} % bez zadání - pro začátek práce, aby nebyl problém s překladem
 %\documentclass[english]{fitthesis} % without assignment - for the work start to avoid compilation problem
 %\documentclass[zadani]{fitthesis} % odevzdani do wisu - odkazy jsou barevné
@@ -92,7 +92,7 @@
   year=2017,             %rok odevzdání / year of submission
   date=\today,           %datum odevzdani / submission date
   %Nazev prace / thesis title
-  title.cs={Watermarking ako ochrana dokumentov},  %nazev prace v cestine ci slovenstine (dle zadani) / thesis title in czech language (according to assignment)
+  title.cs={Watermarking jako ochrana dokumentů},  %nazev prace v cestine ci slovenstine (dle zadani) / thesis title in czech language (according to assignment)
   title.en={Watermarking as Document Protection}, %nazev prace v anglictine / thesis title in english
   %Autor / Author
   author={Patrik Segedy},   %cele jmeno a prijmeni autora / full name and surname of the author
@@ -130,12 +130,12 @@
 }
 
 %Abstrakt (cesky, slovensky ci anglicky) / Abstract (in czech, slovak or english)
-\abstract[cs]{Do tohoto odstavce bude zapsán výtah (abstrakt) práce v českém (slovenském) jazyce.}
-\abstract[en]{Do tohoto odstavce bude zapsán výtah (abstrakt) práce v anglickém jazyce.}
+\abstract[cs]{Táto práca sa zaoberá ochranou dokumentov pomocou digitálneho watermarkingu. Najprv sú prezentované vlastnosti vodoznakov. Potom nasledujú rôzne možnosti využitia tejto techniky. Ďalšia časť je venovaná rozboru súčasného vývoja v oblasti vodoznačenia, využitiu rôznych princípov vkladania vodoznaku pre rozličné typy multimediálnych dát. Následne je navrhnutý spôsob vkladania vodoznaku do statického obrazu, ktorý je neskôr implementovaný. Nakoniec je implementovaný algoritmus podrobený útokom za účelom poškodenia vodoznaku. Tento vodoznak je potom extrahovaný a je zhodnotená jeho podobnosť s vloženým vodoznakom.}
+\abstract[en]{This thesis is dealing with document protection using digital watermarking. First, the watermark characteristics are presented. Then, different usages of watermarking are discussed. Next part of the thesis is dedicated to current development of watermarking. It is aimed at various principles of watermark embedding into different multimedia types. Subsequently, a watermarking scheme for still images is proposed and implemented. Finally, the watermarking scheme undergoes attacks, which should damage embedded watermark. Attacked watermark is then extracted and compared to the embedded watermark.}
 
 %Klicova slova (cesky, slovensky ci anglicky) / Keywords (in czech, slovak or english)
-\keywords[cs]{Sem budou zapsána jednotlivá klíčová slova v českém (slovenském) jazyce, oddělená čárkami.}
-\keywords[en]{Sem budou zapsána jednotlivá klíčová slova v anglickém jazyce, oddělená čárkami.}
+\keywords[cs]{vodoznačenie, vodoznak, QR rozklad, vkladanie vodoznaku, extrakcia vodoznaku, PSNR, NC}
+\keywords[en]{watermarking, watermark, QR decomposition, watermark embedding, watermark extraction, PSNR, NC}
 
 %Prohlaseni (u anglicky psane prace anglicky, u slovensky psane prace slovensky)
 %Declaration (for thesis in english should be in english)
