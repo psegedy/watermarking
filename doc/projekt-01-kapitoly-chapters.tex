@@ -1,8 +1,17 @@
 \chapter{Úvod}
-TODO
+Prvé papierové vodoznaky sa objavili okolo roku 1282 v Taliansku. Znaky boli vytvorené tak, že do foriem na papier sa pridali tenké drôtené vzory, ktoré zapríčinili to, že papier bol v týchto miestach tenší, a teda viac priesvitný. \cite{Cox}
+
+Najprv boli papierové vodoznaky využívané ako ochranná známka spoločnosti, ktorá papier vyrobila. Neskôr sa začali využívať ako ochranný prvok proti falšovaniu bankoviek, čo poznáme dodnes. Práve odtiaľ môžeme vidieť analógiu medzi papierovým vodoznakom a digitálnym vodoznakom. Ako papierový vodoznak na bankovkách, tak aj digitálny vodoznak môže slúžiť k ochrane diela proti falšovaniu. Podľa \cite{Katzenbeisser} bola prvá publikácia venujúca sa digitálnemu watermarkingu publikovaná Tanakom v roku 1990.
+
+Dnes pri náraste digitálnych technológii je umožnený jednoduchý prístup k digitálnym informáciám. Vďaka takémuto vývoju je dnes bezproblémové digitálne dáta bezstratovo kopírovať a potom ďalej rozširovať. To umožňuje ďalej šíriť aj diela, ktoré sú chránené autorským právom. Aj keď sú CD, DVD a Blu-ray nosiče vybavené ochranou proti kopírovaniu, často je takáto ochrana nedostačujúca. Po prelomení ochrany sú multimediálne dáta kopírované a distribuované na Interenete a následne nelegálne užívané. Samozrejme, že pôvod filmov a hudby je ľahko zistiteľný, no nájsť autora fotografie alebo obrázku je zložitejšie. Práve to bolo motiváciou k zavedeniu digitálneho watermarkingu.
+
+Vývoj v oblasti watermarkingu sa sústreďuje na hľadanie nových metód, ktoré ponúknu najlepší pomer medzi robustnosťou, nevnímateľnosťou a kapacitou vodoznaku, čo sú tri základné vlastnosti vodoznaku.
+
+Cieľom tejto práce je preskúmať techniky watermarkingu pre ochranu obrazových dát a implementovať moduly programového systému, ktorý bude zabezpečovať ochranu pomocou watermarkingu. Na začiatok v kapitole \ref{ch-watermarking} uvedieme čo je to watermarking, vysvetlíme jeho vlastnosti a ukážeme rôzne účely ku ktorým môžeme watermarking použiť. V rovnakej kapitole si ukážeme typy útokov, ktorých cieľom je vložený vodoznak poškodiť alebo odstrániť. Súčasnému stavu a aktuálnym výskumom sa budeme venovať v kapitole \ref{ch-state}. Kapitola \ref{ch-design} sa zameria na návrh vodoznačiacej metódy pre ochranu statického obrazu. Tento návrh bude následne implementovaný a kapitole \ref{ch-impl} popíše implementáciu navrhovaného systému. Implementovaný algoritmus pre vkladanie a extrakciu vodoznaku je potrebné otestovať. Testovanie prebieha spôsobom vykonania útokov na vodoznačený obraz. Jednotlivým útokom, ktoré testujú robustnosť vodoznačiacej metódy a ich vyhodnotenie bude popísané v kapitole \ref{testy}.
 
 %=========WATERMARKING========
 \chapter{Watermarking}
+\label{ch-watermarking}
 Watermarking je proces skrývania digitálnej informácie do nosného signálu.
 
 Na jednej strane je watermarking blízko spätý so steganografiou, ale na druhej strane je založený na iných základných filozofiách, potrebách a aplikáciách. To má za následok, že použité techniky svojimi vlastnosťami jasne oddeľujú watermarking od steganografie.
@@ -148,7 +157,7 @@ V~roku 1953 et al. [25] popísali systém, ktorý mal za úlohu redukovať cenu 
 
 V~roku 1989 Broughton a Laumeister získali patent [27] za techniku, ktorá umožňovala vzájomné pôsobenie akčných figúrok a televízneho vysielania. V~tejto technike sa využíval jednoduchý vodoznak, ktorý moduloval intenzity horizontálnych scanlines v~každom obraze videa. Tento modulačný signál je detegovaný svetlo citlivým zariadením, ktoré je umiestnené blízko televízneho prijímača. Týmto spôsobom je možné synchronizovať akčné figúrky s~video, ktoré je pozerané v~televízii. Broughton a Laumeister taktiež spomenuli, že modulácia intenzít scanlines vyvoláva detekovateľný rádio frekvenčný (RF) signál a to môže byť využité ako základ pre alternatívny detektor.
 
-Novším spôsobom využitia watermarkingu pre device control je systém od spoločnosti Digimarc, ktorý vloží jedinečný identifikátor do tlačených a distribuovaných obrázkov, ako sú napríklad reklamy v~časopisoch, vstupenky a podobne. Po tom čo je obrázok zachytený pomocou fotoaparátu mobilného telefónu, vodoznak je prečítaný softvérom na telefóne a identifikátor je určený k~presmerovaniu na webovú stránku. \cite{Cox}
+Novším spôsobom využitia watermarkingu pre device control je systém od spoločnosti Digimarc, ktorý vloží jedinečný identifikátor do tlačených a distribuovaných obrázkov, ako sú napríklad reklamy v~časopisoch, vstupenky a podobne. Po tom čo je obrázok zachytený pomocou fotoaparátu mobilného telefónu, vodoznak je prečítaný softvérom na telefóne a~identifikátor je určený k~presmerovaniu na webovú stránku. \cite{Cox}
 
 %preklad???
 \subsection{Legacy enhancements}
@@ -159,7 +168,7 @@ Systém pre medzinárodné riadenie letovej prevádzky používa analógový kom
 
 Eurocontrol, Európska organizácia pre bezpečnosť letovej prevádzky, zvažovala, či je možné automaticky vložiť digitálny vodoznak do komunikácie s~pilotom. Watermarkingom všetkej komunikácie je možné zabezpečiť digitálny identifikátor podobne ako číslo na chvoste, ktoré jednoznačne určuje lietadlo. Tento systém je kompatibilný so súčasným komunikačným vybavením v~lietadlách aj v~centrách riadenia letovej prevádzky.
 
-Ďalším príkladom môže byť využitie digitálneho vodoznaku pre synchronizáciu audio a video signálu od firmy Tektronix. Problém nastáva ak sú video a audio kanály televízneho vysielania spracovávané samostatne. Spracovanie digitálneho signálu pre audio a video kanály môže mať rôznu odozvu, čo môže viesť ku známemu problému, keď pohyb pier nesedí s~rečou. Riešením je vložiť vysoko komprimovaný audio signál do video signálu. Po spracovaní všetkých signálov je audio signál porovnaný s~vloženým audio signálom pre zistenie, či bolo zavedené nejaké časové oneskorenie. \cite{Cox}
+Ďalším príkladom môže byť využitie digitálneho vodoznaku pre synchronizáciu audio a~video signálu od firmy Tektronix. Problém nastáva ak sú video a audio kanály televízneho vysielania spracovávané samostatne. Spracovanie digitálneho signálu pre audio a video kanály môže mať rôznu odozvu, čo môže viesť ku známemu problému, keď pohyb pier nesedí s~rečou. Riešením je vložiť vysoko komprimovaný audio signál do video signálu. Po spracovaní všetkých signálov je audio signál porovnaný s~vloženým audio signálom pre zistenie, či bolo zavedené nejaké časové oneskorenie. \cite{Cox}
 
 %\section{Vloženie a extrakcia vodoznaku}
 
@@ -232,6 +241,7 @@ Vo všeobecnosti môžeme povedať, že väčšina výskumu sa zameriava práve 
 
 %=========SÚČASNÝ STAV========
 \chapter{Súčasný stav}
+\label{ch-state}
 Pri skúmaní súčasného stavu je potrebné sústrediť sa na rôzne spôsoby použitia watermarkingu v~rozličných typoch médií. Sledujeme viacero prístupov ku vkladaniu vodoznaku, ktoré vedú k~rôznym účelom využitia watermarkingu v~danom médiu. V~roku 2004 bolo v~\cite{Barni} uvedené, že vo všeobecnosti je možné povedať, že väčšina výskumu týkajúceho sa skrývania digitálnych dát je zameraná na watermarking obrazu. S~týmto tvrdením môžeme súhlasiť aj dnes. Pri hľadaní vedeckých článkov na tému watermarking stále narazíme na väčšinu diel venujúcich sa hľadaniu nových prístupov pre watermarking obrazu.
 
 \section{Watermarking obrazu}
@@ -291,6 +301,7 @@ De Cock, Hofbauer, Stütz, Uhl a Unterweger \cite{DeCock2015} predstavujú frame
 
 %=========IMPLEMENTÁCIA=======
 \chapter{Návrh implementácie}
+\label{ch-design}
 V~tejto kapitole sa zameriame na návrh implementácie vloženia a extrakcie vodoznaku pomocou QR dekompozície do statického snímku v~odtieňoch šedej ako to bolo prezentované v~článku {\it Fast and robust watermarking in still images based on QR decomposition od Yashar Naderahmadian a Saied Hosseini-Khayat} \cite{QRdecomposition}.
 
 Najprv sa budeme venovať tomu čo je to QR dekompozícia matice. Potom sa v~sekciách \ref{kniznice} a \ref{vlozenie} budeme venovať navrhovanému programovaciemu jazyku, použitým knižniciam pre implementáciu a samotnému spôsobu vloženia a extrakcie vodoznaku v~priestorovej doméne. Následne navrhneme spôsob testovania a konkrétnych útokov voči ktorým budeme testovať odolnosť navrhnutého princípu vloženia vodoznaku.
@@ -401,6 +412,7 @@ Kvalita vodoznačeného obrazu bude meraná prostredníctvom pomeru medzi maxim�
 Testovať budeme odolnosť vodoznaku voči rotácii obrazu, zmene veľkosti a orezaniu. Použijeme taktiež útoky vo forme vloženia šumu do obrazu, konkrétne Gaussovský šum. Ako ďalšia forma útoku bude použité filtrovanie. Vykonávať budeme mediánové filtrovanie a filtrovanie priemerovaním. Keďže podľa \cite{QRdecomposition} má mať tento systém zvýšenú odolnosť proti JPEG kompresii, tak overíme odolnosť tejto metódy proti rôznym úrovniam JPEG kompresie.
 
 \chapter{Implementácia}
+\label{ch-impl}
 Nasledujúca kapitola sa venuje implementácii navrhovaného algoritmu pre digitálne vodoznačenie obrazu. V~tejto kapitole budú vysvetlené jednotlivé funkcie použité v~programe a taktiež odlišnosti medzi návrhom a implementovaným algoritmom.
 
 Ako už bolo spomenuté v~návrhu v~kapitole \ref{kniznice}, algoritmus je implementovaný v~jazyku C++ s~využitím knižnice ImageMagick. Konkrétne s~využitím objektovo orientovaného API tejto knižnice pre jazyk C++, Magick++. Táto knižnica je postačujúca pre načítanie a uloženie obrazu, ako aj pre transformácie výsledného obrazu, pridanie šumu alebo nastavenie úrovne kompresie. Preto nie je potrebné použiť žiadne ďalšie knižnice.
