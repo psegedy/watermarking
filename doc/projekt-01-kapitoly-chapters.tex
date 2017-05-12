@@ -21,7 +21,8 @@ Steganografia aj watermarking popisujú techniky, ktoré sa používajú k~nepos
 Watermarking má dodatočnú odolnosť proti pokusom vymazať skryté dáta. Populárnou aplikáciou watermarkingu je dokázanie vlastníctva digitálnych dát prostredníctvom vloženia vyhlásenia o~autorských právach. Je nepochybné, že pre tento účel by vložené informácie mali byť  robustné proti manipuláciám, ktoré sa ich pokúšajú odstrániť. Inou aplikáciou môže byť monitorovanie a sledovanie, kde sa užívateľ zaujíma o~monitorovanie prenosu dát, napríklad za účelom kontroly platieb. \cite{Katzenbeisser}
 
 \section{Klasifikácia vodoznakov}
-Vodoznaky môžeme deliť podľa viacerých vlastností:
+Vlastnosti, ktoré musí spĺňať vodoznak sa líšia na základe konkrétneho použitia tohto vodoznaku. Preto môžeme vodoznaky klasifikovať na základe ich vlastností. Medzi vlastnosti, ktoré rozlišujeme pri vodoznakoch patria tieto vlastnosti:
+
 \begin{itemize}
 \item Nevnímateľnosť
 \item Kapacita vodoznaku
@@ -32,7 +33,7 @@ Vodoznaky môžeme deliť podľa viacerých vlastností:
 \item Reverzibilita
 \end{itemize}
 
-Medzi najdôležitejšie z~vyššie vymenovaných vlastností môžeme považovať {\it nevnímateľnosť}, {\it kapacitu} a {\it robustnosť} a vodoznaku. Kvalitná metóda vodoznačenia musí nájsť kompromis medzi týmito troma vlastnosťami. Každá z~týchto vlastností vodoznaku bude vysvetlená v~nasledujúcich podkapitolách.
+Medzi najdôležitejšie z~vyššie vymenovaných vlastností môžeme považovať {\it nevnímateľnosť}, {\it kapacitu} a {\it robustnosť} vodoznaku. Kvalitná metóda vodoznačenia musí nájsť kompromis medzi týmito troma vlastnosťami. Každá z~týchto vlastností vodoznaku bude vysvetlená v~nasledujúcich podkapitolách.
 
 \subsection{Nevnímateľnosť}
 Modifikácie spôsobené vložením vodoznaku by mali byť pod hranicou vnímateľnosti, nezávisle na účele za ktorým bol watermarking použitý. Artefakty zavedené procesom watermarkingu sú nie len otravné a nežiadúce, ale môžu tiež znížiť komerčnú hodnotu takto označených dát. Dôsledkom toho, že požadujeme aby bol vodoznak nevnímateľný, individuálne vzorky (pixely, voxely, atď.) sú modifikované len v~malej miere. Pre posúdenie nevnímateľnosti musia byť stanovené určité kritéria, aby sme boli schopní kvantifikovať skreslenie. \cite{Katzenbeisser}
@@ -223,7 +224,9 @@ Na základe aplikácie a požiadaviek watermarkingu môžeme uvažovať napríkl
 \item	Mozaikový útok
 \end{itemize}
 
-\section{Obraz vs. audio vs. video}
+Niektoré útoky z tohto zoznamu použijeme na testovanie robustnosti vodoznačiacej metódy v kapitole \ref{testy}. Konkrétne budeme používať útoky, ktoré majú za účel zlepšenie obrazu, budeme tiež vkladať šum, využijeme nelineárnu filtráciu, afinné transformácie, ale aj modifikáciu histogramu alebo kompresiu.
+
+\section{Statický obraz vs. audio vs. video}
 Pre čo najväčšiu všeobecnosť je potrebné diskutovať ako skryť informáciu v~rôznych typoch médií. Preto sa budeme venovať ako obrazu, tak aj audiu. Nebudeme sa venovať ukrývaniu informácii v~texte alebo grafických súboroch, pretože tam vznikajú iné problémy. Taktiež sa nebudeme venovať ukrývaniu dát v~3D objektoch.
 
 Hoci vloženie vodoznaku do obrazu je rozdielne od vloženia rovnakej informácie do video sekvencie alebo do audio signálu, väčšina konceptov zostáva rovnaká. Medzi problémy, ktoré sú nezávislé na médiu patrí napríklad:
@@ -824,3 +827,14 @@ JPEG 20\%                    & 0.193 &
 Po útokoch stratovou JPEG kompresiou môžeme skonštatovať, že ešte pri 50\% kompresii sme schopní rozpoznať extrahovaný vodoznak. Pri zvolení silnejšej kompresie je vodoznak už vážnejšie poškodený.
 
 \chapter{Záver}
+Cieľom tejto práce bolo analyzovať možnosti využitia watermarkingu pri ochrane obrazového záznamu, navrhnúť a implementovať základné moduly programového systému umožňujúce takúto ochranu a následné zhodnotenie tohto riešenia.
+
+Zo skúmania súčasného stavu môžeme na základe počtu publikovaných vedeckých článkov zhodnotiť, že watermarking je stále aktuálnou témou výskumu. Vo väčšine publikácií stále pretrváva použitie watermarkingu pre statický obraz, no objavujú sa aj diela, ktoré predstavujú návrhy systémov pre ochranu iných typov multimédií. Zaujímavým je napríklad využívanie genetických algoritmov pre vytvorenie optimálneho vodoznaku.
+
+Pri našej implementácii systéme pre vkladanie a extrakciu vodoznaku sme využili návrh algoritmu prezentovaný v \cite{QRdecomposition}, ktorý využíva QR rozklad pre ukrytie vodoznaku do nosného obrázku. Tento algoritmus bol využitý hlavne kvôli deklarovanej zvýšenej odolnosti tejto metódy proti JPEG kompresii. Na rozdiel od článku v ktorom bol tento prístup prezentovaný sme využili maximálnu možnú kapacitu metódy. Použili sme iný nosný obrázok do ktorého bol vodoznak vkladaný a tiež sme použili iný vodoznak. Tieto zmeny mohli viesť k rozdielnym výsledkom našej implementácie.
+
+Výsledkom práce je fungujúci systém schopný vložiť a extrahovať vodoznak. Nosný obrázok v odtieňoch šedej ako aj vkladaný čiernobiely vodoznak môže byť v jednom z vyše 200 podporovaných formátov. Pri testovaní našej implementácie sme využili nosný obrázok vo formáte JPEG a vodoznak vo formáte PBM. Systém je naprogramovaný v jazyku C++ s využitím knižnice ImageMagick, ktorá slúži pre spracovávanie obrazu.
+
+Pri testovaní prezentovaného riešenia sme zvolili ako najvhodnejšiu hodnotu sily vodoznaku $S=24$, pri ktorej bol pomer energie signálu k energii šumu $PSNR=37,86dB$. Následne bolo implementované riešenie podrobené testom. Z testov, ktoré útočili na vodoznačený obraz vložením šumu sme zistili, že algoritmus sa dokáže vysporiadať iba s vložením šumu s rovnomerným rozložením. Pri testoch za účelom vylepšenia obrazu sme zistili, že najlepšie obstál test s využitím mediánového filtrovania, kedy bol extrahovaný vodoznak totožný s vloženým vodoznakom. Naopak po prevedení ekvalizácie histogramu môžeme vložený vodoznak považovať za zničený. Pri skúmaní odolnosti proti zmene veľkosti obrázku a rotácii najlepšie dopadol útok, ktorý vodoznačený obrázok zväčšil o 25\%. Z útokov pomocou JPEG kompresie konštatujeme, že ešte pri použití 50\% kompresii sme schopní extrahovaný vodoznak vizuálne rozpoznať.
+
+Implementované riešenie bolo preložené na operačnom systéme {\it Fedora 24} prekladačom {\it GCC 6.3.1} a s využitím knižnice {\it ImageMagick} vo verzii {\it 7.0.5-4}.
