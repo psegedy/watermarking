@@ -1,8 +1,7 @@
 # makefile pro preklad LaTeX verze Bc. prace
 # makefile for compilation of the thesis
-# (c) 2008 Michal Bidlo
-# E-mail: bidlom AT fit vutbr cz
-# Edited by: dytrych AT fit vutbr cz
+# Autori / Authors: 2008 Michal Bidlo, 2016 Jaroslav Dytrych
+# E-mail: dytrych AT fit vutbr cz
 #===========================================
 # asi budete chtit prejmenovat / you will probably rename:
 CO=projekt
@@ -14,10 +13,13 @@ pdf: $(CO).pdf
 $(CO).ps: $(CO).dvi
 	dvips $(CO)
 
+draft: $(CO)*.tex
+	pdflatex $(CO)
+
 $(CO).pdf: clean
-	pdflatex $(CO)
+	pdflatex -draftmode $(CO)
 	bibtex $(CO)
-	pdflatex $(CO)
+	pdflatex -draftmode $(CO)
 	pdflatex $(CO)
 
 $(CO).dvi: $(CO).tex $(CO).bib

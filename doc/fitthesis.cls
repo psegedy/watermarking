@@ -1,9 +1,7 @@
 % ----------------------------------------------------------------------------
 % FIT thesis
 % ----------------------------------------------------------------------------
-% (C) 2007 Zdenek Vasicek, 2008 Michal Bidlo
-% ----------------------------------------------------------------------------
-% Šablonu upravil / edited by: Ing. Jaroslav Dytrych, dytrych@fit.vutbr.cz
+% Autoři / Authors: 2007 Zdeněk Vašíček, 2008 Michal Bidlo, 2016 Jaroslav Dytrych
 % ----------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fitthesis}[2007/04/13 Sablona pro BP/DP]
@@ -15,8 +13,10 @@
 \newif\ifcover \let\ifcover\iffalse
 \newif\ifCOPEN \let\ifCOPEN\iffalse
 \newif\ifCBOPEN \let\ifCBOPEN\iffalse
+\newif\ifODSAZ \let\ifODSAZ\iffalse
 
 \newif\ifPrint \let\ifPrint\iffalse
+\newif\ifBarLogo \let\ifBarLogo\iffalse
 \newif\ifWis   \let\ifWis\iftrue
 \newif\ifzadani   \let\ifzadani\iffalse
 \newif\iftwoside   \let\iftwoside\iffalse
@@ -30,10 +30,12 @@
 \DeclareOption{slovak}{\let\ifslovak\iftrue\let\ifczech\iffalse}
 \DeclareOption{cover}{\let\ifcover\iftrue}
 \DeclareOption{print}{\let\ifWis\iffalse \let\ifPrint\iftrue}
+\DeclareOption{cprint}{\let\ifWis\iffalse \let\ifPrint\iftrue \let\ifBarLogo\iftrue}
 \DeclareOption{zadani}{\let\ifzadani\iftrue}
 \DeclareOption{twoside}{\let\iftwoside\iftrue}
 %\DeclareOption{COPEN}{\let\ifCOPEN\iftrue}
 %\DeclareOption{CBOPEN}{\let\ifCBOPEN\iftrue}
+\DeclareOption{odsaz}{\let\ifODSAZ\iftrue}
 
 \DeclareOption*{}
 \ProcessOptions\relax
@@ -101,6 +103,20 @@
   \toggletrue{czechslovak}
 \fi
 
+\newtoggle{zadaniTwop}
+\togglefalse{zadaniTwop}
+\iftwoside
+  \toggletrue{zadaniTwop}
+\fi
+\iftoggle{zadaniTwop}{
+  \ifzadani
+    \toggletrue{zadaniTwop}
+  \else
+    \togglefalse{zadaniTwop}
+  \fi
+}{}
+
+
 %-----------------------------------------------------------------------------
 % Sazebni obrazec / Page layout
 %-----------------------------------------------------------------------------
@@ -114,6 +130,16 @@
   \setlength{\textheight}{23.0cm}
   \setlength{\textwidth}{15.2cm}
 \fi
+
+
+\ifODSAZ
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{0.5\bigskipamount}
+\else
+  \setlength\parindent{17\p@}
+  \setlength{\parskip}{0pt}
+\fi
+
 
 %-----------------------------------------------------------------------------
 % Texty / Texts
@@ -313,6 +339,8 @@
 %všechna velká / uppercase
 \newcommand{\mkuctxt}[2]{\vbox{\setfontsize{#1}\noindent\MakeUppercase{#2}}\vspace\mkspc}
 \newcommand{\mkuctxtt}[2]{\vbox{\setfontsize{#1}\fosfamily\bfseries\noindent\MakeUppercase{#2}}\vspace\mkspc}
+% Pro název práce na 2 řádky odkomentovat a doladit následující / For the 2-line thesis title, uncomment and fine-tune following
+% \newcommand{\mkuctxttl}[2]{\vbox to 1.0cm{\noindent\parbox{14.5cm}{\setfontsize{#1}\fosfamily\bfseries\noindent\MakeUppercase{#2}}}\vspace\mkspc}
 \newcommand{\mkuctxtc}[2]{\vbox{\setfontsize{#1}\ifCOPEN\fosfamily\fi\ifCBOPEN\fosfamily\bfseries\fi\noindent\MakeUppercase{#2}}\vspace\mkspc}
 %bold
 \newcommand{\mktxt@b}[2]{\vbox{\setfontsize{#1}\noindent\bf#2}\vspace\mkspc}
@@ -324,6 +352,9 @@
 %-----------------------------------------------------------------------------
 \newcommand\makecover{
 \thispagestyle{empty}\null%
+
+\setlength\parindent{17\p@}
+\setlength{\parskip}{0pt}
 
 \fontfamily{qhv}\selectfont%
 %  
@@ -371,6 +402,14 @@
 \vfill
 
 \noindent\mktxtc{16}{\hspace{-52.0pt}Brno, \@year \hfill \getlc@author \hspace{5.0pt}~}
+
+\ifODSAZ
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{0.5\bigskipamount}
+\else
+  \setlength\parindent{17\p@}
+  \setlength{\parskip}{0pt}
+\fi
 
 \end{center}
 
@@ -437,9 +476,9 @@
 
 \mktxt@b{16}{\ifslovak\@cite@SK\else\ifczech\@cite@CS\else\@cite@EN\fi\fi}
 \iftoggle{slovak_used}{
-  \noindent\MakeUppercase{\@author@s}, \@author@n. \it\@title\rm. Brno, \@year. \@projecttype@SK. \@vut@SK, \@fit@SK. {\@supervisor@SK} {\@supervisor@s} {\@supervisor@n}. 
+  \noindent\MakeUppercase{\@author@s}, \@author@n. \it\@title\rm. Brno, \@year. \@projecttype@SK. \@vut@SK, \@fit@SK. {\@supervisor@SK} {\@supervisor@tp} {\@supervisor@n} {\@supervisor@s}{\ifx\undefined\@supervisor@ta\else,~\@supervisor@ta\fi}
 }{
-  \noindent\MakeUppercase{\@author@s}, \@author@n. \it\@title\rm. Brno, \@year. \ifczech\@projecttype@CS\else\@projecttype@EN\fi. \ifczech\@vut@CS\else\@vut@EN\fi, \ifczech\@fit@CS\else\@fit@EN\fi. {\ifczech\@supervisor@CS\else\@supervisor@EN\fi} {\@supervisor@s} {\@supervisor@n}. 
+  \noindent\MakeUppercase{\@author@s}, \@author@n. \it\@title\rm. Brno, \@year. \ifczech\@projecttype@CS\else\@projecttype@EN\fi. \ifczech\@vut@CS\else\@vut@EN\fi, \ifczech\@fit@CS\else\@fit@EN\fi. {\ifczech\@supervisor@CS\else\@supervisor@EN\fi} {\@supervisor@tp} {\@supervisor@n} {\@supervisor@s}{\ifx\undefined\@supervisor@ta\else,~\@supervisor@ta\fi}
 }
 %===================================================
 \newpage
@@ -501,6 +540,10 @@
 \iftwoside
   \pagestyle{empty}\null%
 \fi
+
+\setlength\parindent{17\p@}
+\setlength{\parskip}{0pt}
+
 %=====================================================
 \fontfamily{qhv}\selectfont%
 %\newsavebox{\@obrlogo}\newsavebox{\@rtext}\newlength{\@vyskartext}\newlength{\@vyskaobr}%
@@ -508,7 +551,11 @@
 
 
 \ifPrint
-  \savebox{\@obrlogo}{\hspace*{-0.6cm}\includegraphics[width=4.1cm,keepaspectratio,trim={1.2cm 1.2cm 1.2cm 1.2cm},clip]{template-fig/VUT_symbol_cernobile_CZ}}%symbol VUT
+  \ifBarLogo
+    \savebox{\@obrlogo}{\hspace*{-0.6cm}\includegraphics[width=4.1cm,keepaspectratio,trim={1.2cm 1.2cm 1.2cm 1.2cm},clip]{template-fig/VUT_symbol_barevne_CMYK_CZ}}%symbol VUT
+  \else
+    \savebox{\@obrlogo}{\hspace*{-0.6cm}\includegraphics[width=4.1cm,keepaspectratio,trim={1.2cm 1.2cm 1.2cm 1.2cm},clip]{template-fig/VUT_symbol_cernobile_CZ}}%symbol VUT
+  \fi
 \else
   \savebox{\@obrlogo}{\hspace*{-0.6cm}\includegraphics[width=4.1cm,keepaspectratio,trim={1.2cm 1.2cm 1.2cm 1.2cm},clip]{template-fig/VUT_symbol_barevne_CMYK_CZ}}%symbol VUT
 \fi
@@ -561,6 +608,7 @@
 
 \vfill
 
+% Pro název práce na 2 řádky použijte \mkuctxttl{18} / For the 2-line thesis title use \mkuctxttl{18}
 \mkuctxtt{18}{\ifslovak\@title@CS\else\ifczech\@title@CS\else\@title@EN\fi\fi}
 \mkuctxtt{10}{\ifslovak\@title@EN\else\ifczech\@title@EN\else\@title@CS\fi\fi}
 
@@ -589,8 +637,25 @@
 \fi
 
 %zadani / assignment
-\ifzadani\includepdf[pages=-,offset=0.6cm -1.7cm]{zadani.pdf}\fi
-%\ifzadani\includepdf[pages=-,offset=0.6cm -1.7cm]{assignment.pdf}\fi
+\iftoggle{zadaniTwop}{
+  \cleardoublepage
+  \includepdf[pages=-,offset=0.6cm -1.7cm]{zadani.pdf}
+  %\ifzadani\includepdf[pages=-,offset=0.6cm -1.7cm]{assignment.pdf}\fi
+}{
+  \ifzadani
+    \includepdf[pages=-,offset=0.6cm -1.7cm]{zadani.pdf}
+    %\ifzadani\includepdf[pages=-,offset=0.6cm -1.7cm]{assignment.pdf}\fi
+  \fi
+}
+
+
+\ifODSAZ
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{0.5\bigskipamount}
+\else
+  \setlength\parindent{17\p@}
+  \setlength{\parskip}{0pt}
+\fi
 
 \iftwoside
   \cleardoublepage
@@ -782,13 +847,13 @@
 % http://tex.stackexchange.com/questions/111999/slovak-and-czech-babel-gives-problems-with-cmidrule-and-cline
 %--------------------------------------------------------
 \usepackage{regexpatch}
-\ifczechslovak
+%\ifczechslovak
   \makeatletter
   % Change the `-` delimiter to an active character
   \xpatchparametertext\@@@cmidrule{-}{\cA-}{}{}
   \xpatchparametertext\@cline{-}{\cA-}{}{}
   \makeatother
-\fi
+%\fi
 
 % Příkazy pro TODO
 % commands for TODO

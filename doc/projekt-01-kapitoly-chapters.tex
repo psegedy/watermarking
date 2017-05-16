@@ -1,27 +1,27 @@
 \chapter{Úvod}
-Prvé papierové vodoznaky sa objavili okolo roku 1282 v Taliansku. Znaky boli vytvorené tak, že do foriem na papier sa pridali tenké drôtené vzory, ktoré zapríčinili to, že papier bol v týchto miestach tenší, a teda viac priesvitný. \cite{Cox}
+Prvé papierové vodoznaky sa objavili okolo roku 1282 v~Taliansku. Znaky boli vytvorené tak, že do foriem na papier sa pridali tenké drôtené vzory, ktoré zapríčinili to, že papier bol v~týchto miestach tenší, a teda viac priesvitný. \cite{Cox}
 
-Najprv boli papierové vodoznaky využívané ako ochranná známka spoločnosti, ktorá papier vyrobila. Neskôr sa začali využívať ako ochranný prvok proti falšovaniu bankoviek, čo poznáme dodnes. Práve odtiaľ môžeme vidieť analógiu medzi papierovým vodoznakom a digitálnym vodoznakom. Ako papierový vodoznak na bankovkách, tak aj digitálny vodoznak môže slúžiť k ochrane diela proti falšovaniu. Podľa \cite{Katzenbeisser} bola prvá publikácia venujúca sa digitálnemu watermarkingu publikovaná Tanakom v roku 1990.
+Najprv boli papierové vodoznaky využívané ako ochranná známka spoločnosti, ktorá papier vyrobila. Neskôr sa začali využívať ako ochranný prvok proti falšovaniu bankoviek, čo poznáme dodnes. Práve odtiaľ môžeme vidieť analógiu medzi papierovým vodoznakom a~digitálnym vodoznakom. Ako papierový vodoznak na bankovkách, tak aj digitálny vodoznak môže slúžiť k~ochrane diela proti falšovaniu. Podľa knihy {\it Information hiding techniques for steganography and digital watermarking} \cite{Katzenbeisser} bola prvá publikácia venujúca sa digitálnemu watermarkingu publikovaná Tanakom v~roku 1990.
 
-Dnes pri náraste digitálnych technológii je umožnený jednoduchý prístup k digitálnym informáciám. Vďaka takémuto vývoju je dnes bezproblémové digitálne dáta bezstratovo kopírovať a potom ďalej rozširovať. To umožňuje ďalej šíriť aj diela, ktoré sú chránené autorským právom. Aj keď sú CD, DVD a Blu-ray nosiče vybavené ochranou proti kopírovaniu, často je takáto ochrana nedostačujúca. Po prelomení ochrany sú multimediálne dáta kopírované a distribuované na Interenete a následne nelegálne užívané. Samozrejme, že pôvod filmov a hudby je ľahko zistiteľný, no nájsť autora fotografie alebo obrázku je zložitejšie. Práve to bolo motiváciou k zavedeniu digitálneho watermarkingu.
+Dnes pri náraste digitálnych technológii je umožnený jednoduchý prístup k~digitálnym informáciám. Vďaka takémuto vývoju je dnes bezproblémové digitálne dáta bezstratovo kopírovať a potom ďalej rozširovať. To umožňuje ďalej šíriť aj diela, ktoré sú chránené autorským právom. Aj keď sú CD, DVD a Blu-ray nosiče vybavené ochranou proti kopírovaniu, často je takáto ochrana nedostatočná. Po prelomení ochrany sú multimediálne dáta kopírované a distribuované na Internete a následne nelegálne užívané. Samozrejme, že pôvod filmov a hudby je ľahko zistiteľný, no nájsť autora fotografie alebo obrázku je zložitejšie. Práve to bolo motiváciou k~zavedeniu digitálneho watermarkingu.
 
-Vývoj v oblasti watermarkingu sa sústreďuje na hľadanie nových metód, ktoré ponúknu najlepší pomer medzi robustnosťou, nevnímateľnosťou a kapacitou vodoznaku, čo sú tri základné vlastnosti vodoznaku.
+Vývoj v~oblasti watermarkingu sa sústreďuje na hľadanie nových metód, ktoré ponúknu najlepší pomer medzi robustnosťou, nevnímateľnosťou a kapacitou vodoznaku, čo sú tri základné vlastnosti vodoznaku.
 
-Cieľom tejto práce je preskúmať techniky watermarkingu pre ochranu obrazových dát a implementovať moduly programového systému, ktorý bude zabezpečovať ochranu pomocou watermarkingu. Na začiatok v kapitole \ref{ch-watermarking} uvedieme čo je to watermarking, vysvetlíme jeho vlastnosti a ukážeme rôzne účely ku ktorým môžeme watermarking použiť. V rovnakej kapitole si ukážeme typy útokov, ktorých cieľom je vložený vodoznak poškodiť alebo odstrániť. Súčasnému stavu a aktuálnym výskumom sa budeme venovať v kapitole \ref{ch-state}. Kapitola \ref{ch-design} sa zameria na návrh vodoznačiacej metódy pre ochranu statického obrazu. Tento návrh bude následne implementovaný a kapitole \ref{ch-impl} popíše implementáciu navrhovaného systému. Implementovaný algoritmus pre vkladanie a extrakciu vodoznaku je potrebné otestovať. Testovanie prebieha spôsobom vykonania útokov na vodoznačený obraz. Jednotlivým útokom, ktoré testujú robustnosť vodoznačiacej metódy a ich vyhodnotenie bude popísané v kapitole \ref{testy}.
+Cieľom tejto práce je preskúmať techniky watermarkingu pre ochranu obrazových dát a~implementovať moduly programového systému, ktorý bude zabezpečovať ochranu pomocou watermarkingu. Na začiatok v~kapitole \ref{ch-watermarking} uvedieme čo je to watermarking, vysvetlíme jeho vlastnosti a ukážeme rôzne účely, ku ktorým môžeme watermarking použiť. V~rovnakej kapitole si ukážeme typy útokov, ktorých cieľom je vložený vodoznak poškodiť alebo odstrániť. Súčasnému stavu a aktuálnym výskumom sa budeme venovať v~kapitole \ref{ch-state}. Kapitola \ref{ch-design} sa zameria na návrh vodoznačiacej metódy pre ochranu statického obrazu. Tento návrh bude následne implementovaný a v~kapitole \ref{ch-impl} popíšeme implementáciu navrhovaného systému. Implementovaný algoritmus pre vkladanie a extrakciu vodoznaku je potrebné otestovať. Testovanie prebieha spôsobom vykonania útokov na vodoznačený obraz. Jednotlivým útokom, ktoré testujú robustnosť vodoznačiacej metódy a ich vyhodnoteniu bude venovaná kapitola \ref{testy}.
 
 %=========WATERMARKING========
 \chapter{Watermarking}
 \label{ch-watermarking}
 Watermarking je proces skrývania digitálnej informácie do nosného signálu.
 
-Na jednej strane je watermarking blízko spätý so steganografiou, ale na druhej strane je založený na iných základných filozofiách, potrebách a aplikáciách. To má za následok, že použité techniky svojimi vlastnosťami jasne oddeľujú watermarking od steganografie.
+Na jednej strane je watermarking úzko spätý so steganografiou, ale na druhej strane je založený na iných základných filozofiách, potrebách a aplikáciách. To má za následok, že použité techniky svojimi vlastnosťami jasne oddeľujú watermarking od steganografie.
 
 Steganografia aj watermarking popisujú techniky, ktoré sa používajú k~nepostrehnuteľnému sprostredkovaniu informácie pomocou vloženia tejto informácie do nosných dát. Steganografia je typicky spájaná s~ukrytím informácií pri point-to-point komunikácii medzi dvoma stranami. Metódy steganografie nie sú zvyčajne robustné voči modifikáciám dát alebo majú limitovanú robustnosť a ochranu vloženej informácie proti technickým modifikáciám, ktoré môžu nastať pri prenose dát alebo pri ich ukladaní. Ako príklad takejto modifikácie môže byť napríklad konverzia formátu, kompresia alebo konverzia digitálneho signálu na analógový.
 
 Watermarking má dodatočnú odolnosť proti pokusom vymazať skryté dáta. Populárnou aplikáciou watermarkingu je dokázanie vlastníctva digitálnych dát prostredníctvom vloženia vyhlásenia o~autorských právach. Je nepochybné, že pre tento účel by vložené informácie mali byť  robustné proti manipuláciám, ktoré sa ich pokúšajú odstrániť. Inou aplikáciou môže byť monitorovanie a sledovanie, kde sa užívateľ zaujíma o~monitorovanie prenosu dát, napríklad za účelom kontroly platieb. \cite{Katzenbeisser}
 
 \section{Klasifikácia vodoznakov}
-Vlastnosti, ktoré musí spĺňať vodoznak sa líšia na základe konkrétneho použitia tohto vodoznaku. Preto môžeme vodoznaky klasifikovať na základe ich vlastností. Medzi vlastnosti, ktoré rozlišujeme pri vodoznakoch patria tieto vlastnosti:
+Vlastnosti, ktoré musí spĺňať vodoznak sa líšia na základe konkrétneho použitia tohto vodoznaku. Preto môžeme vodoznaky klasifikovať na základe ich vlastností. Medzi vlastnosti, ktoré rozlišujeme pri vodoznakoch patria tieto:
 
 \begin{itemize}
 \item Nevnímateľnosť
@@ -33,7 +33,7 @@ Vlastnosti, ktoré musí spĺňať vodoznak sa líšia na základe konkrétneho 
 \item Reverzibilita
 \end{itemize}
 
-Medzi najdôležitejšie z~vyššie vymenovaných vlastností môžeme považovať {\it nevnímateľnosť}, {\it kapacitu} a {\it robustnosť} vodoznaku. Kvalitná metóda vodoznačenia musí nájsť kompromis medzi týmito troma vlastnosťami. Každá z~týchto vlastností vodoznaku bude vysvetlená v~nasledujúcich podkapitolách.
+Medzi najdôležitejšie z~vyššie vymenovaných vlastností môžeme považovať {\it nevnímateľnosť}, {\it kapacitu} a {\it robustnosť} vodoznaku. Kvalitná metóda vodoznačenia musí nájsť kompromis medzi týmito troma vlastnosťami. Každá z~týchto vlastností vodoznaku bude bližšie vysvetlená v~nasledujúcich podkapitolách.
 
 \subsection{Nevnímateľnosť}
 Modifikácie spôsobené vložením vodoznaku by mali byť pod hranicou vnímateľnosti, nezávisle na účele za ktorým bol watermarking použitý. Artefakty zavedené procesom watermarkingu sú nie len otravné a nežiadúce, ale môžu tiež znížiť komerčnú hodnotu takto označených dát. Dôsledkom toho, že požadujeme aby bol vodoznak nevnímateľný, individuálne vzorky (pixely, voxely, atď.) sú modifikované len v~malej miere. Pre posúdenie nevnímateľnosti musia byť stanovené určité kritéria, aby sme boli schopní kvantifikovať skreslenie. \cite{Katzenbeisser}
@@ -44,12 +44,12 @@ Kapacita je základnou vlastnosťou akéhokoľvek vodoznačiaceho algoritmu, kto
 
 Požiadavky musia byť nastavené vzhľadom na aplikáciu konkrétnej techniky. Možné požiadavky na kapacitu môžu byť v~rozsahu od niekoľko stoviek bitov, v~aplikáciách zameraných na bezpečnosť, po tisícky bitov v~aplikáciách zameraných na titulkovanie alebo označovanie (captioning or labeling), ktorých primárnou potrebou je možnosť vloženia veľkého počtu bitov.
 
-Vo všeobecnosti potreba na kapacitu vždy bojuje proti dvom iným dôležitým požiadavkám, ktorými sú, nevnímateľnosť a robustnosť vodoznaku. \cite{Barni}
+Vo všeobecnosti potreba na kapacitu vždy bojuje proti dvom iným dôležitým požiadavkám, ktorými sú nevnímateľnosť a robustnosť vodoznaku. \cite{Barni}
 
 \subsection{Viacnásobné vloženie}
 V~niektorých prípadoch je požadované vložiť viac ako jeden vodoznak. Predpokladajme napríklad, že máme systém na ochranu autorských práv, kde každá chránená časť dát pozostáva z~2 vodoznakov: jedného s~identitou autora a druhého indikujúceho meno autorizovaného zákazníka. Algoritmy umožňujúce vkladanie viacerých vodoznakov musia zvládnuť to, aby každý vodoznak bol korektne prečítaný dekodérom. Vloženie niekoľkých vodoznakov nesmie zhoršiť kvalitu hostiteľských dát. \cite{Barni}
 \subsection{Robustnosť}
-Robustnosť udáva schopnosť detegovať watermark po aplikovaní bežných operácií pri spracovaní signálov. Medzi bežné operácie nad obrazom patrí priestorové filtrovanie, stratová kompresia, vytlačenie a následné skenovanie a geometrické deformácie (rotácia, premiestnenie, škálovanie a pod.). Vodoznaky vo videu musia byť robustné voči tým istým transformáciám, ale aj napríklad voči nahratiu na video kazetu, zmenu počtu snímkov za sekundu a iným vplyvom. Audio vodoznaky by mali byť robustné proti takým procesom, ako je časová filtrácia, nahratie na audio kazetu a variácie s~rýchlosťou prehrávania, ktorých výsledkom je kolísanie zvuku.
+Robustnosť udáva schopnosť detegovať watermark po aplikovaní bežných operácií pri spracovaní signálov. Medzi bežné operácie nad obrazom patrí priestorové filtrovanie, stratová kompresia, vytlačenie a následné skenovanie a geometrické deformácie (rotácia, premiestnenie, škálovanie a pod.). Vodoznaky vo videu musia byť robustné voči tým istým transformáciám, ale aj napríklad voči nahratiu na videokazetu, zmenu počtu snímkov za sekundu a~iným vplyvom. Audio vodoznaky by mali byť robustné proti takým procesom, ako je časová filtrácia, nahratie na audiokazetu a variácie s~rýchlosťou prehrávania, ktorých výsledkom je kolísanie zvuku.
 
 V~niektorých prípadoch môže byť robustnosť úplne irelevantná, či dokonca nechcená. V~skutočnosti sa veľká časť zameraná na výskum vodoznakov sústreďuje na krehké vodoznaky. Krehký vodoznak je navrhnutý tak, aby nebol robustný. Napríklad vodoznak navrhnutý za účelom autentifikácie by mal byť krehký. Akákoľvek metóda spracovávania signálu aplikovaná na obraz, by mala spôsobiť, že vodoznak bude stratený. \cite{Cox}
 
@@ -58,7 +58,7 @@ V~niektorých prípadoch môže byť robustnosť úplne irelevantná, či dokonc
 Algoritmus vodoznaku sa nazýva {\it blind}, ak sa nie je potrebné uchýliť k~porovnaniu medzi originálnym neoznačeným a označeným aktívom pre obnovenie vodoznaku. Naopak vodoznačiaci algoritmus sa nazýva {\it non-blind}, ak sú potrebné pôvodné dáta pre extrahovanie informácie obsiahnutej vo vodoznaku. Niekedy sú {\it blind} techniky označované ako {\it oblivious} alebo {\it private}. \cite{Barni}
 
 \subsection{Detekovateľnosť}
-Dôležitým rozdielom medzi metódami ukrývania dát je, či vložený kód je možné čítať alebo je ho možné iba detegovať. V~prvom prípade ({\it readable watermarking}) je možné bity obsiahnuté vo vodoznaku prečítať bez ich znalosti vopred. Naopak v~druhom prípade ({\it detectable watermarking}) je možné len verifikovať, či sa daný kód nachádza v~dokumente. Inými slovami, je možné povedať, že ak je vodoznak detekovateľný, prítomnosť vodoznaku môže byť odhalená iba vtedy, ak je obsah vodoznaku známy dopredu. \cite{Barni}
+Dôležitým rozdielom medzi metódami ukrývania dát je, či je možné vložený kód čítať alebo je ho možné iba detegovať. V~prvom prípade ({\it readable watermarking}) je možné bity obsiahnuté vo vodoznaku prečítať bez ich znalosti vopred. Naopak v~druhom prípade ({\it detectable watermarking}) je možné len verifikovať, či sa daný kód nachádza v~dokumente. Inými slovami, je možné povedať, že ak je vodoznak detekovateľný, prítomnosť vodoznaku môže byť odhalená iba vtedy, ak je vopred známy obsah vodoznaku. \cite{Barni}
 
 \subsection{Reverzibilita}
 Ak bol raz vodoznak dekódovaný/detegovaný je možné ho odstrániť zo zdrojového nosiča a tým pádom je možné obnoviť originálny nosič. O~takomto vodoznaku hovoríme, že je {\it strict-sense reversible} (SSR). Vodoznak je {\it wide-sense reversible} (WSR), ak je možné ho urobiť nedekódovateľný/nedetekovateľný bez viditeľných zmien zdrojového nosiča, potom čo už raz bol dekódovaný/detegovaný. \cite{Barni}
@@ -66,35 +66,35 @@ Ak bol raz vodoznak dekódovaný/detegovaný je možné ho odstrániť zo zdrojo
 \section{Použitie vodoznakov}
 Watermarking je možné použiť pre rôzne účely. Vo všeobecnosti sa dá povedať, že ak je pre nás užitočné pripojiť k~dokumentu nejaké ďalšie informácie, tak tieto metadáta môžeme vložiť do dokumentu vo forme vodoznaku. Existuje mnoho rôznych spôsobov ako priložiť metadáta k~dokumentu. Napríklad vloženie dát do hlavičky digitálneho súboru alebo zakódovanie do obrázku vo forme čiarového kódu.
 
-Podľa \cite{Cox} je watermarking od ostatných techník rozdielny v~troch dôležitých bodoch a vďaka týmto trom vlastnostiam sa stáva nenahraditeľným pre niektoré potreby.
+Podľa \cite{Cox} je watermarking od ostatných techník rozdielny v~troch dôležitých bodoch a~vďaka týmto trom vlastnostiam sa stáva nenahraditeľným pre niektoré potreby.
 \begin{enumerate}
     \item Watermarking je neviditeľný. Vodoznaky narozdiel od čiarových kódov nenarúšajú estetiku obrazu.
     \item Vodoznaky sú neoddeliteľné od dokumentu do ktorého sú vložené. Nie sú odstránené ako hlavička súboru, keď je dokument zobrazovaný alebo pri konverzii na iný typ formátu súboru.
     \item Vodoznaky sú vystavované rovnakým transformáciám ako dokumenty do ktorých sú vkladané. To znamená, že niekedy je možné zistiť niečo o~týchto transformáciách pozretím sa na výsledný vodoznak.
 \end{enumerate}
 
-Ako je uvedené v~\cite{Cox}, skúmame osem možností použitia vodoznakov: monitoring vysielania, identifikáciu vlastníka, dôkaz o~vlastníctve, sledovanie transakcií, autentifikácia, copy control, device control a legacy enhancements.
+Ako je uvedené v~\cite{Cox}, skúmame osem možností použitia vodoznakov: monitoring vysielania, identifikácia vlastníka, dôkaz o~vlastníctve, sledovanie transakcií, autentifikácia obsahu, ochrana proti kopírovaniu, ovládanie zariadení a spätne kompatibilné vylepšenie systému.
 
 \subsection{Monitoring vysielania}
 V~roku 1997 prepukol v~Japonsku škandál kvôli televíznym reklamám. Najmenej dve televízne stanice pravidelne plánovali viacero reklám v~rovnaký vysielací čas. Inzerenti platili za tisíce reklám, ktoré neboli nikdy odvysielané \cite{Cox}. Takéto praktiky boli vo veľkej miere nedetekovateľné po dobu viac ako 20 rokov, hlavne kvôli tomu, že neexistovali žiadne systémy pre monitoring aktuálne vysielaných reklám.
 
-Low-tech metóda pre sledovanie vysielania je využitie ľudských pozorovateľov, ktorí budú sledovať vysielanie a zaznamenávať čo videli a počuli. Táto metóda je drahá a náchylná k~chybám. Preto je veľmi vhodné nahradiť to automatizovaným monitorovaním. Techniky pre dosiahnutie tohto cieľa môžeme rozdeliť do dvoch skupín. Pasívny monitoring sa snaží o~simulovanie ľudských pozorovateľov (spoľahlivejšie a lacnejšie), teda sa snaží o~rozoznanie vysielaného obsahu. Aktívny monitoring sa spolieha na informácie ktoré sú pridružené k~vysielanému obsahu.
+Tradičnou, jednoduchou metódou pre sledovanie vysielania je využitie ľudských pozorovateľov, ktorí budú sledovať vysielanie a zaznamenávať čo videli a počuli. Táto metóda je drahá a náchylná k~chybám. Preto je veľmi vhodné nahradiť to automatizovaným monitorovaním. Techniky pre dosiahnutie tohto cieľa môžeme rozdeliť do dvoch skupín. Pasívny monitoring sa snaží o~simulovanie ľudských pozorovateľov (spoľahlivejšie a lacnejšie), teda sa snaží o~rozoznanie vysielaného obsahu. Aktívny monitoring sa spolieha na informácie ktoré sú pridružené k~vysielanému obsahu.
 
-Pasívny systém pozostáva z~počítača, ktorý monitoruje vysielanie a porovnáva získaný signál s~databázou známych  diel. Keď sa porovnaním nájde zhoda, pieseň, film, TV program alebo vysielaná reklama môže byť identifikovaná. Takýto systém sa využíva napríklad na odhadnutie koľko míňa konkurenčná spoločnosť na reklamu. Tento systém sa nevyužíva na účel verifikácie (napr., či reklama bola odvysielaná). Jedným z~dôvodov môže byť, že systém rozpoznávania nie je dostatočne presný.
+Pasívny systém pozostáva z~počítača, ktorý monitoruje vysielanie a porovnáva získaný signál s~databázou známych  diel. Keď sa porovnaním nájde zhoda, pieseň, film, TV program alebo vysielaná reklama môže byť identifikovaná. Takýto systém sa využíva napríklad na odhadnutie, koľko míňa konkurenčná spoločnosť na reklamu. Tento systém sa nevyužíva na účel verifikácie (napríklad, či reklama bola odvysielaná). Jedným z~dôvodov môže byť, že systém rozpoznávania nie je dostatočne presný.
 
 Pre zaistenie dostatočnej presnosti pre verifikačné účely je pravdepodobne potrebné využiť aktívny monitorovací systém, kde strojovo rozpoznateľná identifikačná informácia je prenášaná spoločne s~obsahom. Aktívny monitoring je technicky jednoduchší na implementáciu ako pasívny monitoring. Identifikačná informácia je postačujúca na spoľahlivé dekódovanie a nie je potrebná databáza pre interpretovanie tejto informácie. \cite{Cox}
 
 \subsection{Identifikácia vlastníka}
 Textové upozornenia o~autorských právach, ako technológia pre identifikáciu vlastníka diela, majú niekoľko obmedzení. Je ich jednoduché odstrániť z~kopírovaného dokumentu, dokonca aj bez priameho zámeru. Napríklad, pri kopírovaní strán knihy sa zabudne na fotokópiu upozornenia o~autorských právach na titulnej strane. Následkom čoho, človek ktorý chce ďalej využiť toto dielo nevie, či dielo je chránené autorským právom. Dokonca aj keď je predpokladané, že dielo je chránené, môže byť zložité vyhľadať identitu tvorcu alebo osoby, od ktorej musí byť žiadané povolenie.
 
-Pretože vodoznaky môžu byť zároveň neviditeľné a neoddeliteľné od diela, v~ktorom sú vložené, mali by byť vhodnejšie ako text pre identifikáciu autora. Ak užívatelia diela budú mať k~dispozícii detektory vodoznakov, budú schopní zistiť vlastníka označeného diela. Možné by to bolo dokonca aj v~prípade, že dielo bolo modifikované spôsobom, ktorý by odstránil textové upozornenie o~autorských právach.
+Pretože vodoznaky môžu byť zároveň neviditeľné a neoddeliteľné od diela v~ktorom sú vložené, mali by byť vhodnejšie ako text pre identifikáciu autora. Ak užívatelia diela budú mať k~dispozícii detektory vodoznakov, budú schopní zistiť vlastníka označeného diela. Možné by to bolo dokonca aj v~prípade, že dielo bolo modifikované spôsobom, ktorý by odstránil textové upozornenie o~autorských právach.
 
-Vodoznak pre obrázky od firmy {\it Digimarc} bol navrhnutý presne za týmto účelom. Podarilo sa im dosiahnuť veľké rozšírenie ich detektoru vodoznakov zabudovaním detektoru do programu {\it Photoshop} od spoločnosti {\it Adobe}. Keď tento detektor rozozná vodoznak, kontaktuje centrálnu databázu a použije správu vo vodoznaku ako kľúč pre nájdenie informácii o~vlastníkovi. \cite{Cox}
+Presne na tento účel bol navrhnutý vodoznak pre obrázky od firmy {\it Digimarc}. Podarilo sa im dosiahnuť veľké rozšírenie ich detektoru vodoznakov zabudovaním detektoru do programu {\it Photoshop} od spoločnosti {\it Adobe}. Keď tento detektor rozozná vodoznak, kontaktuje centrálnu databázu a použije správu vo vodoznaku ako kľúč pre nájdenie informácii o~vlastníkovi. \cite{Cox}
 
 \subsection{Dôkaz o~vlastníctve}
 Je lákavé použiť vodoznak nie len na identifikáciu vlastníka, ale aj na dokázanie vlastníctva. To je niečo, čo textové upozornenie nedokáže zabezpečiť, pretože je ho jednoduché sfalšovať.
 
-Autor vloží do svojho diela vodoznak, ktorý má zabezpečiť ochranu autorských práv. Niekto ďalší však dielo ukradne a pretože ho chce vydávať za svoje, vloží doň svoj vodoznak. Následne pri extrakcii vodoznaku vieme zistiť, že dielo autora obsahuje jeho vodoznak a neobsahuje žiadne časti iného vodoznaku. V~prípade druhého diela, sme schopní extrahovať vodoznak vložený zlodejom, avšak tiež vieme extrahovať aspoň časť pôvodného vodoznaku. Týmto spôsobom vieme dokázať kto je autorom diela.
+Autor vloží do svojho diela vodoznak, ktorý má zabezpečiť ochranu autorských práv. Niekto ďalší však dielo ukradne a pretože ho chce vydávať za svoje, vloží doň svoj vodoznak. Následne pri extrakcii vodoznaku vieme zistiť, že dielo autora obsahuje jeho vodoznak a~neobsahuje žiadne časti iného vodoznaku. V~prípade druhého diela, sme schopní extrahovať vodoznak vložený zlodejom, avšak tiež vieme extrahovať aspoň časť pôvodného vodoznaku. Týmto spôsobom vieme dokázať kto je autorom diela.
 
 Problémom je, že ak je dostupný detektor, a teda je možné vodoznak zobraziť, potom je ho možné aj odstrániť a nahradiť vlastným. Preto bude pre tento účel nevyhnutné zabrániť dostupnosti detektoru. \cite{Cox}
 
@@ -105,39 +105,39 @@ V~literatúre na tému sledovania transakcií sa osoba, ktorá je zodpovedná za
 
 Sledovanie transakcií je často označované ako {\it fingerprinting}, pretože každá kópia diela je jedinečne identifikovateľná vodoznakom, čo je analógia k~ľudským odtlačkom prstov, ktoré jedinečne identifikujú osobu.
 
-Existuje niekoľko technológií pre tento účel, ktoré nespadajú medzi našu definíciu vodoznakov. Jednou častou alternatívou ku vodoznaku je použitie viditeľných značiek. Citlivé obchodné dokumenty ako napríklad obchodný plán, sú často na pozadí potlačené veľkými sivými číslami, kde pre každú kópiu je toto číslo iné. Následne sú uchované záznamy o~tom, kto má ktorú kópiu. Tieto značky sú často označované ako vodoznaky kvôli fyzickej podobe s~papierovými vodoznakmi. Napriek tomu, to nie sú vodoznaky v~našom chápaní tohto termínu, pretože neviditeľnosť uvažujeme ako základnú definujúcu charakteristiku.
+Existuje niekoľko technológií pre tento účel, ktoré nespadajú medzi našu definíciu vodoznakov. Jednou častou alternatívou ku vodoznaku je použitie viditeľných značiek. Citlivé obchodné dokumenty ako napríklad obchodný plán, sú často na pozadí potlačené veľkými sivými číslami, kde pre každú kópiu je toto číslo iné. Následne sú uchované záznamy o~tom, kto má ktorú kópiu. Tieto značky sú často označované ako vodoznaky kvôli fyzickej podobe s~papierovými vodoznakmi. Napriek tomu to nie sú vodoznaky v~našom chápaní tohto termínu, pretože neviditeľnosť uvažujeme ako základnú definujúcu charakteristiku.
 
 Vodoznak pre sledovanie transakcií bol implementovaný dnes už zaniknutou spoločnosťou {\it DiVX Corporation}. {\it DiVX} predával vylepšený DVD prehrávač, ktorý implementoval biznis model založený na platbe za prehratie. Vytvorili množstvo bezpečnostných metód aby zabránili pirátstvu ich diskov. Jednou z~týchto metód bolo využitie vodoznaku navrhnutého pre sledovanie transakcií. Každý prehrávač podporujúci {\it DiVX} umiestnil unikátny vodoznak do každého prehraného videa. Ak niekto toto video potom nahral a začal predávať jeho kópie na čiernom trhu, {\it DiVX} korporácia dekódovaním vodoznaku dokázala identifikovať škodcu (alebo aspoň jeho {\it DiVX} prehrávač). \cite{Cox}
 
 \subsection{Autentifikácia obsahu}
-Dnes sa falšovanie diela stáva čoraz jednoduchším a jednoduchším v~spôsobe, ktorý je ťažké detegovať. Napríklad modifikovať obrázok tak, že sa odstráni z~neho osoba. Ak by takýto obrázok bol kritickou časťou evidencie alebo policajného vyšetrovania, tak by takýto spôsob falšovania mohol spôsobiť seriózny problém.
+Dnes sa falšovanie diela stáva čoraz jednoduchším v~spôsobe, ktorý je ťažké detegovať. Napríklad modifikovať obrázok tak, že sa odstráni z~neho osoba. Ak by takýto obrázok bol kritickou časťou evidencie alebo policajného vyšetrovania, tak by takýto spôsob falšovania mohol spôsobiť seriózny problém.
 
-Problém autentifikačných správ bol podrobne študovaný v~kryptografii. Častým kryptografickým prístupom k~riešeniu tohto problému je vytvorenie digitálneho podpisu. Využíva sa algoritmus šifrovania s~využitím asymetrického kľúča, teda kľúč potrebný na zašifrovanie a dešifrovanie správy je rôzny. Vďaka tomu človek, ktorý sa snaží zmeniť správu, nie je schopný vytvoriť nový podpis. Ak niekto následne porovná modifikovanú správu proti originálnemu podpisu, zistí, že podpisy sa nezhodujú a správa bola modifikovaná.
+Problém autentifikačných správ bol podrobne študovaný v~kryptografii. Častým kryptografickým prístupom k~riešeniu tohto problému je vytvorenie digitálneho podpisu. Využíva sa algoritmus šifrovania s~využitím asymetrického kľúča, teda kľúč potrebný na zašifrovanie a dešifrovanie správy je rôzny. Vďaka tomu, človek, ktorý sa snaží zmeniť správu, nie je schopný vytvoriť nový podpis. Ak niekto následne porovná modifikovanú správu proti originálnemu podpisu, zistí, že podpisy sa nezhodujú a správa bola modifikovaná.
 
 Tieto podpisy sú metadáta, ktoré musia byť prenášané spoločne s~dielom. Preto je ľahké normálnym používaním stratiť tieto podpisy. Uvažujme systém pre autentifikáciu obrazu, ktorý uchováva metadáta v~hlavičke JPEG súboru. Ak bude tento obraz konvertovaný na iný formát súboru, ktorý nemá dostatok miesta v~hlavičke pre podpis, tak tento podpis bude stratený.
 
 Vhodnejším riešením sa javí byť vloženie podpisu priamo do diela použitím watermarkingu. Tento vložený podpis budeme označovať ako autentifikačnú značku. Autentifikačná značka musí byť navrhnutá tak, aby sa stala nevalidnou po čo i len najmenšej modifikácii diela. Takéto značky sú krehkými vodoznakmi.
 
-Keď dielo obsahujúce autentifikačnú značku bude modifikované, značka bude modifikovaná spolu s~ním. To nám otvára možnosti skúmania ako bolo dielo sfalšované. Ak napríklad je obraz rozdelený do niekoľkých blokov a každý blok má vlastnú autentifikačnú značku, tak budeme schopní zistiť, ktoré časti obrazu sú autentické a ktoré boli zmenené. \cite{Cox}
+Keď dielo obsahujúce autentifikačnú značku bude modifikované, značka bude modifikovaná spolu s~ním. To nám otvára možnosť skúmania spôsobu, akým bolo dielo sfalšované. Ak je napríklad obraz rozdelený do niekoľkých blokov a každý blok má vlastnú autentifikačnú značku, tak budeme schopní zistiť, ktoré časti obrazu sú autentické a ktoré boli zmenené. \cite{Cox}
 
 %preklad??
-\subsection{Copy control}
-Väčšina použití watermarkingu, ktoré sú spomenuté vyššie nadobúdajú zmysel, ak niekto urobil niečo zlé. Napríklad monitoring vysielania pomáha dolapiť nečestných vysielateľov potom, čo neodvysielali reklamy, za ktoré dostali zaplatené a sledovanie transakcií identifikuje osoby potom, ako rozširovali nelegálne kópie. Tieto technológie slúžia ako odstrašujúci prostriedok proti takémuto konaniu. Samozrejme je lepšie predvídať a predchádzať takýmto nelegálnym skutkom. Pri využití copy control sa zameriavame na prevenciu pred tým, aby ľudia vytvárali nelegálne kópie obsahu, ktorý je chránený autorskými právami.
+\subsection{Ochrana proti kopírovaniu}
+Väčšina použití watermarkingu, ktoré sú spomenuté vyššie nadobúdajú zmysel, ak niekto urobil niečo zlé. Napríklad monitoring vysielania pomáha dolapiť nečestných vysielateľov potom, čo neodvysielali reklamy, za ktoré dostali zaplatené. Sledovanie transakcií identifikuje osoby potom, ako rozširovali nelegálne kópie. Tieto technológie slúžia ako odstrašujúci prostriedok proti takémuto konaniu. Samozrejme je lepšie predvídať a predchádzať takýmto nelegálnym skutkom. Pri využití ochrany proti kopírovaniu sa zameriavame na prevenciu pred tým, aby ľudia vytvárali nelegálne kópie obsahu, ktorý je chránený autorskými právami.
 
-Prvou a najsilnejšou ochranou proti ilegálnemu kopírovaniu je šifrovanie. Šifrovaním diela prostredníctvom unikátneho kľúča dokážeme zabezpečiť, že dielo je nepoužiteľné pre toho, kto nevlastní tento kľúč. Kľúč je poskytnutý oprávneným používateľom takým spôsobom, aby ho nebolo jednoduché kopírovať alebo redistribuovať. Ako príklad môže slúžiť satelitné televízne vysielanie, ktoré je šifrované. Dešifrovacie kľúče sú k~dispozícii každému platiacemu zákazníkovi spôsobom „smart card“, táto karta musí byť vložená do zákazníkovho televízneho set-top boxu. Bez tejto karty nie je možné sledovať vysielanie.
+Prvou a najsilnejšou ochranou proti ilegálnemu kopírovaniu je šifrovanie. Šifrovaním diela prostredníctvom unikátneho kľúča dokážeme zabezpečiť, že dielo je nepoužiteľné pre toho, kto nevlastní tento kľúč. Kľúč je poskytnutý oprávneným používateľom takým spôsobom, aby ho nebolo jednoduché kopírovať alebo redistribuovať. Ako príklad môže slúžiť satelitné televízne vysielanie, ktoré je šifrované. Dešifrovacie kľúče sú k~dispozícii každému platiacemu zákazníkovi spôsobom {\it smart card}, táto karta musí byť vložená do zákazníkovho televízneho set-top boxu. Bez tejto karty nie je možné sledovať vysielanie.
 
 Existujú tri základné spôsoby ako môže útočník prekonať šifrovanie. Prvým a najzložitejším spôsobom je dešifrovanie dát bez získania kľúča. Tento prístup väčšinou zahrňuje istú formu hľadania, kde sa útočník vyčerpávajúco snaží dešifrovať signál pomocou miliónov kľúčov. Ak je šifrovací systém dobre navrhnutý, tak útočník musí vyskúšať každý jeden možný kľúč. Toto je nepraktické ak je kľúč dlhší ako 50 bitov.
 
-Jednoduchším prístupom pre útočníka je získať validný kľúč. Pre získanie kľúča je možné využiť reverzné inžinierstvo nad hardvérom alebo softvérom, ktorý obsahuje tento kľúč. Príklad pre tento spôsob je ukázaný v~DeCSS programe, ktorý bol napísaný Jonom Johansenom a dvomi nemeckými spolupracovníkmi [24]. %citacia
+Jednoduchším prístupom pre útočníka je získať validný kľúč. Pre získanie kľúča je možné využiť reverzné inžinierstvo nad hardvérom alebo softvérom, ktorý obsahuje tento kľúč. V~knihe \cite{Cox} je príklad pre tento spôsob demonštrovaný na DeCSS programe, ktorý bol napísaný Jonom Johansenom a dvomi nemeckými spolupracovníkmi.
 CSS (Content Scrambling System) je šifrovací systém používaný pre ochranu DVD videa pred nelegálnym kopírovaním. Johanson a jeho spolupracovníci boli schopní využiť reverzné inžinierstvo nad DVD prehrávačom a jeho dešifrovacími kľúčmi. To im umožnilo vytvoriť DeCSS, ktorý dešifruje akékoľvek video zašifrované pomocou CSS.
 
 Najjednoduchším spôsobom ako obísť šifrovanie je legálne získanie kľúča a rozširovanie obsahu potom, čo bol týmto kľúčom dešifrovaný. Útočník, ktorý si praje nahrať a redistribuovať satelitné vysielanie, sa najprv prihlási ako zákazník, získa prístupovú kartu smart card a pripojí výstup set-top boxu na vstup jeho nahrávacieho zariadenia. Toto ukazuje hlavnú slabosť ochrany šifrovaním. Predtým ako môže byť obsah použitý, musí byť dešifrovaný, akonáhle je dešifrovaný, ochrana je stratená.
 
-Pretože watermark je vložený do obsahu, a teda je jeho súčasťou, je prítomný v~každej reprezentácii obsahu, a preto by mal poskytnúť lepšiu ochranu a jeho využitie by malo byť lepšou metódou implementácie copy control. Ak by každé nahrávacie zariadenie obsahovalo detektor vodoznakov, potom by mohlo toto zariadenie zabrániť nahrávaniu, ak by bol detegovaný vodoznak, ktorý by mal toto dielo chrániť pred kopírovaním.
+Watermark je vložený do obsahu, teda je jeho súčasťou a je prítomný v~každej reprezentácii obsahu. Preto by mal poskytnúť lepšiu ochranu a jeho využitie by malo byť vhodnejšou metódou implementácie ochrany proti kopírovaniu. Ak by každé nahrávacie zariadenie obsahovalo detektor vodoznakov, potom by mohlo toto zariadenie zabrániť nahrávaniu ak by bol detegovaný vodoznak, ktorý by mal toto dielo chrániť pred kopírovaním.
 
-Napriek tomu je tu jeden podstatný netechnický problém pri zavádzaní copy control systému založenom na watermarkingu. Neexistuje žiaden prirodzený motív ako zabezpečiť, aby každý výrobca vynaložil zvýšené výdavky, kvôli začleneniu detektorov vodoznakov do ich produktov. V~skutočnosti to môže byť odradzujúce, pretože detektor vodoznakov môže znižovať hodnotu rekordéru z~pohľadu zákazníka, pretože zákazník by radšej vlastnil zariadenie, ktoré je schopné vyrábať nelegálne kópie.
+Napriek tomu je tu jeden podstatný netechnický problém pri zavádzaní systému ochrany proti kopírovaniu založenom na watermarkingu. Neexistuje žiaden prirodzený motív ako zabezpečiť, aby každý výrobca vynaložil zvýšené výdavky kvôli začleneniu detektorov vodoznakov do ich produktov. V~skutočnosti to môže byť odradzujúce, pretože detektor vodoznakov môže znižovať hodnotu rekordéru z~pohľadu zákazníka, pretože zákazník by radšej vlastnil zariadenie, ktoré je schopné vyrábať nelegálne kópie.
 
-Pre tento účel bol vymyslený VEIL vodoznak (Video Encoded Invisible Light), ktorý je jednoduchou metódou modulujúcou intenzitu jedného riadku videa (scanline). Tento vodoznak pre video má za úlohu šifrovať Rights Assertion Mark (RAM), čo sa používa ako podpora pre CGMS-A signalizáciu. CGMS-A (Copy Generation Management System Analog) pozostáva z~dvoch bitov informácii reprezentujúcich štyri stavy:
+Pre tento účel bol vymyslený VEIL vodoznak (Video Encoded Invisible Light), ktorý je jednoduchou metódou modulujúcou intenzitu jedného riadku videa ({\it scanline}). Tento vodoznak pre video má za úlohu šifrovať Rights Assertion Mark (RAM), čo sa používa ako podpora pre CGMS-A signalizáciu. CGMS-A (Copy Generation Management System Analog) pozostáva z~dvoch bitov informácii reprezentujúcich štyri stavy:
 
 \begin{itemize}
 \item Copy freely
@@ -146,34 +146,34 @@ Pre tento účel bol vymyslený VEIL vodoznak (Video Encoded Invisible Light), k
 \item Copy never
 \end{itemize}
 
-CGMS-A je video štandard, ktorý prenáša dva bity v~čase medzi koncom posledného riadku obrazu a začiatkom prvého riadku nasledujúceho obrazu, ktorý sa nazýva vertical blanking interval. Takéto dáta je možné jednoducho stratiť alebo odstrániť. Značka RAM je vložená do obsahu videa, ktoré obsahuje CGMS-A signalizáciu. Ak je CGMS-A signál stratený, ale značka RAM je prítomná, nahrávacie zariadenie je navrhnuté tak, aby neumožnilo kopírovanie video signálu. \cite{Cox}
+CGMS-A je video štandard, ktorý prenáša dva bity v~čase medzi koncom posledného riadku obrazu a začiatkom prvého riadku nasledujúceho obrazu, ktorý sa nazýva {\it vertical blanking interval}. Takéto dáta je možné jednoducho stratiť alebo odstrániť. Značka RAM je vložená do obsahu videa, ktoré obsahuje CGMS-A signalizáciu. Ak je CGMS-A signál stratený, ale značka RAM je prítomná, nahrávacie zariadenie je navrhnuté tak, aby neumožnilo kopírovanie video signálu. \cite{Cox}
 
 %preklad??
-\subsection{Device control}
-Copy control spadá do širšej kategórie možných použití, ktoré sú označované ako device control. Existuje niekoľko iných aplikácií, kde zariadenie reaguje na vodoznak, ktorý deteguje v~obsahu. Z~pohľadu užívateľa sú tieto aplikácie často odlišné od copy control, pretože detegovaný vodoznak prináša nejakú pridanú hodnotu a neslúži k~zamedzeniu používania.
+\subsection{Ovládanie zariadení}
+Ochrana proti kopírovaniu spadá do širšej kategórie možných použití, ktoré môžeme označovať ako ovládanie zariadení. Existuje niekoľko iných aplikácií, kde zariadenie reaguje na vodoznak, ktorý deteguje v~obsahu. Z~pohľadu užívateľa sú tieto aplikácie často odlišné od ochrany proti kopírovaniu, pretože detegovaný vodoznak prináša nejakú pridanú hodnotu a neslúži k~zamedzeniu používania.
 
-V~roku 1953 et al. [25] popísali systém, ktorý mal za úlohu redukovať cenu distribúcie reprodukovanej hudby do kancelárií, obchodov a iných priestorov. Táto hudba bola tradične distribuovaná prostredníctvom pevnej linky, čo bolo finančne náročné. MusicScan, držiteľ patentu, sa rozhodol pre zníženie tejto ceny tým, že nahradí vyhradenú rozvodnú sieť systémom bezdrôtového rozhlasu. Predsa len využitie vlastného rádiového vysielania by bolo taktiež príliš drahé. Preto priestory boli ozvučené hudbou z~komerčnej rádio stanice, ktorá okrem hudby vysiela reklamy, rozhovory a iné relácie. Tomberlin et al. práve kvôli tomuto vymysleli, že rádiového vysielania vložia vodoznak, ktorý bude indikovať, kedy rádio vysiela hudba a kedy má byť vysielanie ignorované. Dosiahnuté to bolo dvomi kontrolnými signálmi (vložené ako ultrazvukové alebo infrazvukové audio frekvencie), ktoré určovali začiatok a koniec segmentu, ktorého vysielanie malo byť blokované.
+V~knihe \cite{Cox} sa dozvedáme, že v~roku 1953 Tomberlin et al. popísali systém, ktorý mal za úlohu redukovať cenu distribúcie reprodukovanej hudby do kancelárií, obchodov a iných priestorov. Táto hudba bola tradične distribuovaná prostredníctvom pevnej linky, čo bolo finančne náročné. MusicScan, držiteľ patentu, sa rozhodol pre zníženie tejto ceny tým, že nahradí vyhradenú rozvodnú sieť systémom bezdrôtového rozhlasu. Predsa len využitie vlastného rádiového vysielania by bolo taktiež príliš drahé. Preto priestory boli ozvučené hudbou z~komerčnej rádio stanice, ktorá okrem hudby vysiela reklamy, rozhovory a iné relácie. Tomberlin et al. práve kvôli tomuto vymysleli, že do rádiového vysielania vložia vodoznak, ktorý bude indikovať, kedy rádio vysiela hudbu a kedy má byť vysielanie ignorované. Dosiahnuté to bolo dvomi kontrolnými signálmi (vložené ako ultrazvukové alebo infrazvukové audio frekvencie), ktoré určovali začiatok a koniec segmentu, ktorého vysielanie malo byť blokované.
 
-Ďalšou ranou aplikáciou watermarkingu pre device control je poísaná patentom z~roku 1981, ktorého vynálezcom je Ray Dolby [26]. V~tom čase množstvom FM rádio staníc vysielali hudbu s~použitím techniky na redukciu hluku zvanou Dolby FM. Pre plné využitie Dolby FM je vyžadované, aby rádio obsahovalo korešpondujúci dekodér. Poslucháči sa preto museli spoľahnúť na zoznam staníc, aby mohli rozhodnúť, ktorá stanica vysiela Dolby FM signál a pre tieto stanice museli manuálne zapnúť dekodér. Dolby navrhol, aby rádiá boli schopné automaticky zapnúť dekodér na základe nepočuteľného tónu vysielaného v~rámci frekvenčného audio spektra. Takýto tón vytvára jednoduchý vodoznak.
+Ďalšia raná aplikácia watermarkingu pre ovládanie zariadenia je popísaná patentom z~roku 1981, ktorého vynálezcom je Ray Dolby. V~tom čase množstvo FM rádio staníc vysielalo hudbu s~použitím techniky na redukciu hluku zvanou Dolby FM. Pre plné využitie Dolby FM je vyžadované, aby rádio prijímač obsahoval korešpondujúci dekodér. Poslucháči sa preto museli spoľahnúť na zoznam staníc, aby mohli rozhodnúť, ktorá stanica vysiela Dolby FM signál a pre tieto stanice museli manuálne zapnúť dekodér. Dolby navrhol, aby rádiá boli schopné automaticky zapnúť dekodér na základe nepočuteľného tónu vysielaného v~rámci frekvenčného audio spektra. Takýto tón vytvára jednoduchý vodoznak.
 
-V~roku 1989 Broughton a Laumeister získali patent [27] za techniku, ktorá umožňovala vzájomné pôsobenie akčných figúrok a televízneho vysielania. V~tejto technike sa využíval jednoduchý vodoznak, ktorý moduloval intenzity horizontálnych scanlines v~každom obraze videa. Tento modulačný signál je detegovaný svetlo citlivým zariadením, ktoré je umiestnené blízko televízneho prijímača. Týmto spôsobom je možné synchronizovať akčné figúrky s~video, ktoré je pozerané v~televízii. Broughton a Laumeister taktiež spomenuli, že modulácia intenzít scanlines vyvoláva detekovateľný rádio frekvenčný (RF) signál a to môže byť využité ako základ pre alternatívny detektor.
+V~rovnakej knihe je uvedené, že v~roku 1989 Broughton a~Laumeister získali patent za techniku, ktorá umožňovala vzájomné pôsobenie akčných figúrok a televízneho vysielania. V~tejto technike sa využíval jednoduchý vodoznak, ktorý moduloval intenzity horizontálnych riadkov (scanlines) v~každom obraze videa. Tento modulačný signál je detegovaný svetlo citlivým zariadením, ktoré je umiestnené blízko televízneho prijímača. Týmto spôsobom je možné synchronizovať akčné figúrky s~videom, ktoré je pozerané v~televízii. Broughton a~Laumeister taktiež spomenuli, že modulácia intenzít scanlines vyvoláva detekovateľný rádio frekvenčný (RF) signál a to môže byť využité ako základ pre alternatívny detektor.
 
-Novším spôsobom využitia watermarkingu pre device control je systém od spoločnosti Digimarc, ktorý vloží jedinečný identifikátor do tlačených a distribuovaných obrázkov, ako sú napríklad reklamy v~časopisoch, vstupenky a podobne. Po tom čo je obrázok zachytený pomocou fotoaparátu mobilného telefónu, vodoznak je prečítaný softvérom na telefóne a~identifikátor je určený k~presmerovaniu na webovú stránku. \cite{Cox}
+Novším spôsobom využitia watermarkingu pre ovládanie zariadení je systém od spoločnosti Digimarc, ktorý vloží jedinečný identifikátor do tlačených a distribuovaných obrázkov, ako sú napríklad reklamy v~časopisoch, vstupenky a podobne. Po tom čo je obrázok zachytený pomocou fotoaparátu mobilného telefónu, vodoznak je prečítaný softvérom na telefóne a~identifikátor je určený k~presmerovaniu na webovú stránku. \cite{Cox}
 
-%preklad???
-\subsection{Legacy enhancements}
+\subsection{Spätne kompatibilné vylepšenie systému}
 Niekedy nastáva situácia, že máme veľmi rozsiahly, nasadený systém, ale rozhodneme sa ho vylepšiť za účelom zlepšenia funkcionality. Toto vylepšenie však môže byť nekompatibilné so súčasným systémom. Ako príklad môžeme použiť prechod z~analógového vysielania televízie na digitálny, čo je finančne aj časovo náročný proces. Počas prechodu musí byť použité úplne nové zariadenie pre digitálne vysielanie a zákazníci si musia kúpiť digitálne televízne prijímače. Starší analógový systém však medzitým musí stále fungovať, kým väčšina zákazníkov neprejde na digitálnu technológiu.
 
 Ideálne by sme chceli vylepšiť systém takým spôsobom, aby bol spätne kompatibilný. Digitálny watermarking je jedným zo spôsobov ako je to možné dosiahnuť. V~skratke si ukážeme príklady, ktoré to ilustrujú.
 Systém pre medzinárodné riadenie letovej prevádzky používa analógový komunikačný systém na komunikáciu medzi lietadlom a pozemnými miestami riadenia letovej prevádzky. Podľa protokolu je vyžadované, aby všetci piloti začali komunikáciu povedaním volacej značky. Vznikol však záujem vylepšiť tento systém tak, aby obsahoval strojovo čitateľný identifikátor pre autentifikáciu prenosu. Samozrejme by bolo extrémne drahé nahradiť analógové komunikačné systémy vo všetkých lietadlách, od najväčšieho až po najmenšie jednomiestne lietadlá.
 
-Eurocontrol, Európska organizácia pre bezpečnosť letovej prevádzky, zvažovala, či je možné automaticky vložiť digitálny vodoznak do komunikácie s~pilotom. Watermarkingom všetkej komunikácie je možné zabezpečiť digitálny identifikátor podobne ako číslo na chvoste, ktoré jednoznačne určuje lietadlo. Tento systém je kompatibilný so súčasným komunikačným vybavením v~lietadlách aj v~centrách riadenia letovej prevádzky.
+Eurocontrol, Európska organizácia pre bezpečnosť letovej prevádzky zvažovala, či je možné automaticky vložiť digitálny vodoznak do komunikácie s~pilotom. Watermarkingom všetkej komunikácie je možné zabezpečiť digitálny identifikátor podobne ako číslo na chvoste, ktoré jednoznačne určuje lietadlo. Tento systém je kompatibilný so súčasným komunikačným vybavením v~lietadlách aj v~centrách riadenia letovej prevádzky.
 
 Ďalším príkladom môže byť využitie digitálneho vodoznaku pre synchronizáciu audio a~video signálu od firmy Tektronix. Problém nastáva ak sú video a audio kanály televízneho vysielania spracovávané samostatne. Spracovanie digitálneho signálu pre audio a video kanály môže mať rôznu odozvu, čo môže viesť ku známemu problému, keď pohyb pier nesedí s~rečou. Riešením je vložiť vysoko komprimovaný audio signál do video signálu. Po spracovaní všetkých signálov je audio signál porovnaný s~vloženým audio signálom pre zistenie, či bolo zavedené nejaké časové oneskorenie. \cite{Cox}
 
 %\section{Vloženie a extrakcia vodoznaku}
 
 \section{Ukazovatele kvality}
+Pri posudzovaní kvality vodoznačiacej metódy môžeme pristupovať buď objektívne alebo subjektívne. Subjektívny prístup je taký, pri ktorom pohľadom určíme, či bol obraz po vložení vodoznaku poškodený a či sme schopní v~extrahovanom vodoznaku rozpoznať vodoznak, ktorý bol do obrazu vkladaný.
 Pre získanie objektívneho pohľadu na kvalitu algoritmu pre watermarking si musíme stanoviť určité ukazovatele.
 
 K~vyhodnoteniu podobnosti medzi originálnym vodoznakom $\omega$ a extrahovaným vodoznakom $\omega'$ sa využíva normalizovaná korelácia (NC) \cite{QRdecomposition}
@@ -194,7 +194,9 @@ kde MSE značí strednú kvadratickú chybu (mean square error), ktorá je daná
 MSE = \frac{1}{N\times N} \sum_i \sum_j[I_O(i,j) - I_W(i,j)]^2,
 \end{equation}
 
-kde $N\times N$ je veľkosť obrázku, $I_O$ je originálny obrázok a $I_W$ je vodoznačený obrázok \cite{QRdecomposition}
+kde $N\times N$ je veľkosť obrázku, $I_O$ je originálny obrázok a $I_W$ je vodoznačený obrázok. \cite{QRdecomposition}
+
+Tieto ukazovatele budú v~tejto práci neskôr použité pre zhodnotenie kvality implementovanej metódy vkladania a extrakcie vodoznaku.
 
 \section{Útoky}
 Útoky na vodoznačené dielo môžu byť prevádzané za rôznymi účelmi. Zatiaľ čo niektoré útoky sú použité pre poškodenie vodoznaku, aby ho nebolo možné detegovať, iné majú za úlohu z~chráneného diela vodoznak úplne odstrániť.
@@ -205,14 +207,14 @@ kde $N\times N$ je veľkosť obrázku, $I_O$ je originálny obrázok a $I_W$ je 
 \item Geometrické skreslenie (geometric distortion)
 \end{itemize}
 
-Do prvej kategórie zaradzujeme útoky ako kompresia, zaostrenie, šum a zmena špecifických pixelov. Druhú kategóriu tvoria útoky ako rotácia, zmena veľkosti a vystrihnutie. K~týmto bežným útokom môžeme pridať aj print-scan útok, ktorý je novou výzvou, pretože nie len že mení hodnoty pixelov (spracovanie obrazu), ale aj mení ich pozíciu (geometrické skreslenie). Väčšina watermarking systémov zlyháva pri takomto hybridnom útoku. \cite{Chen}
+Do prvej kategórie zaraďujeme útoky ako kompresia, zaostrenie, šum a zmena špecifických pixelov. Druhú kategóriu tvoria útoky ako rotácia, zmena veľkosti a vystrihnutie. K~týmto bežným útokom môžeme pridať aj print-scan útok, ktorý je novou výzvou, pretože nie len že mení hodnoty pixelov (spracovanie obrazu), ale mení aj ich pozíciu (geometrické skreslenie). Väčšina watermarking systémov zlyháva pri takomto hybridnom útoku. \cite{Chen}
 
 Na základe aplikácie a požiadaviek watermarkingu môžeme uvažovať napríklad nasledujúci zoznam skreslení a útokov: \cite{Katzenbeisser}
 
 \begin{itemize}
 \item	Zlepšenie signálu (ostrenie, zlepšenie kontrastu, korekcia farby, gamma korekcia)
 \item	Aditívny a multiplikatívny šum (Gaussovský, uniformný, mosquito)
-\item	Lineárna filtrácia (dolnopriepustná, hornospriepustná, pásmová)
+\item	Lineárna filtrácia (dolnopriepustná, hornopriepustná, pásmová)
 \item	Nelineárna filtrácia (mediánový filter, morfologický filter)
 \item	Stratová kompresia (obraz: JPEG, video: H.261, H.263, MPEG-2, MPEG-4, audio: MPEG-2, MP3, MPEG-4, G.723)
 \item	Lokálne a globálne afinné transformácie (posun, rotácia, zmena veľkosti, skosenie)
@@ -224,7 +226,7 @@ Na základe aplikácie a požiadaviek watermarkingu môžeme uvažovať napríkl
 \item	Mozaikový útok
 \end{itemize}
 
-Niektoré útoky z tohto zoznamu použijeme na testovanie robustnosti vodoznačiacej metódy v kapitole \ref{testy}. Konkrétne budeme používať útoky, ktoré majú za účel zlepšenie obrazu, budeme tiež vkladať šum, využijeme nelineárnu filtráciu, afinné transformácie, ale aj modifikáciu histogramu alebo kompresiu.
+Niektoré útoky z~tohto zoznamu použijeme na testovanie robustnosti vodoznačiacej metódy v~kapitole \ref{testy}. Konkrétne budeme používať útoky, ktoré majú za účel zlepšenie obrazu, budeme tiež vkladať šum, využijeme nelineárnu filtráciu, afinné transformácie, ale aj modifikáciu histogramu alebo kompresiu.
 
 \section{Statický obraz vs. audio vs. video}
 Pre čo najväčšiu všeobecnosť je potrebné diskutovať ako skryť informáciu v~rôznych typoch médií. Preto sa budeme venovať ako obrazu, tak aj audiu. Nebudeme sa venovať ukrývaniu informácii v~texte alebo grafických súboroch, pretože tam vznikajú iné problémy. Taktiež sa nebudeme venovať ukrývaniu dát v~3D objektoch.
@@ -265,17 +267,18 @@ Konvenčné techniky digitálneho watermarkingu obrazu trpia na zraniteľnosť v
 V~posledných rokoch bol zaznamenaný významný pokrok vo watermarkingu obrazov v~odtieňoch šedej použitím frakčných metód. Barni a Bartolini \cite{Barni} uviedli schému pre watermarking farebných obrazov, ktorá je založená na krížovej korelácii RGB kanálov. V~ich metóde je vodoznak vložený do nosného obrazu modifikáciou DCT koeficientov každého farebného kanálu. Lu, Zou, Yang a Wang \cite{Lu-fractal} prezentujú metódu založenú na frakčnom watermarkingu pre farebné obrazy. V~navrhovanej metóde je farebný pixel uvažovaný ako 3D vektor v~RGB priestore.
 
 Vo všeobecnosti môžeme hovoriť o~dvoch prístupoch pre odhalenie porušenia autorských práv. Jedným je watermarking a tým druhým je fingerprinting. Základnou myšlienkou watermarkingu je vložiť informáciu, vodoznak do obrazu. Ak je podobný vodznak získaný z~podozrivého obrazu, tak je považovaný za duplikát. Princípom fingerprintingu je extrahovať jedinečné vlastnosti z~pôvodného obrazu, z~podozrivého obrazu a porovnať ich. Ak sú si podobné, autorské práva môžu byť potvrdené. Fingerprinting je časovo náročnejší na spracovanie, pretože potrebuje extra čas pre porovnanie odtlačkov s~tými ktoré sú uložené v~databáze. Na druhej strane je fingerprinting robustnejší. \cite{Hsieh2014}
-Hsieh, Chen a Shen \cite{Hsieh2014} využívajú komplementárnosť digitálneho watermarkingu a fingerprintigu pre identifikáciu autorských práv vo farebnom obraze. Využívajú overovacie logo a extrahované vlastnosti nosného obrazu pre generovanie odtlačku, ktorý je následne uložený v~databáze a taktiež vložený do nosného obrazu ako vodoznak. Ak nastane spor ohľadom autorských práv, tak najprv je podozrivý obraz spracovaný watermarkingom. Ak je možné vodoznak získať, tak boli autorské práva potvrdené. V~inom prípade vodoznak slúži ako fingerprint a je spracovaný fingerprintingom. Ak nastane zhoda medzi odtlačkom získanom z~podozrivého obrazu a odtlačkom, ktorý je uložený v~databáze, tak je podozrivý obraz považovaný za duplikát. Pretože tento návrh využíva watermarking aj fingerprinting, tak je robustnejší ako len v~prípade použitia watermarkingu a tiež sa skôr dopátrame k~predbežnému výsledku, na rozdiel od použitia samotného fingerprintingu. V~prípade, že obraz podliehal ľahším útokom, tak na dokázanie autorských práv je postačujúci samotný watermarking. Pri tvrdších útokoch však môže byť vodoznak nečitateľný. Vtedy je použitý fingerprinting, ktorý dokáže úspešne identifikovať autorské práva. Týmto je demonštrovaná efektivita tejto metódy.
+
+Hsieh, Chen a Shen \cite{Hsieh2014} využívajú komplementárnosť digitálneho watermarkingu a fingerprintigu pre identifikáciu autorských práv vo farebnom obraze. Využívajú overovacie logo a extrahované vlastnosti nosného obrazu pre generovanie odtlačku, ktorý je následne uložený v~databáze a taktiež vložený do nosného obrazu ako vodoznak. Ak nastane spor ohľadom autorských práv, tak najprv je podozrivý obraz spracovaný watermarkingom. Ak je možné vodoznak získať, tak boli autorské práva potvrdené. V~inom prípade vodoznak slúži ako fingerprint a je spracovaný fingerprintingom. Ak nastane zhoda medzi odtlačkom získaným z~podozrivého obrazu a odtlačkom, ktorý je uložený v~databáze, tak je podozrivý obraz považovaný za duplikát. Pretože tento návrh využíva watermarking aj fingerprinting, tak je robustnejší ako len v~prípade použitia watermarkingu a tiež sa skôr dopátrame k~predbežnému výsledku na rozdiel od použitia samotného fingerprintingu. V~prípade, že obraz podliehal ľahším útokom, tak na dokázanie autorských práv je postačujúci samotný watermarking. Pri tvrdších útokoch však môže byť vodoznak nečitateľný. Vtedy je použitý fingerprinting, ktorý dokáže úspešne identifikovať autorské práva. Týmto je demonštrovaná efektivita tejto metódy.
 
 \subsection{Print and scan}
 Veľa vodoznačiacich schém chrániacich autorské práva bolo predstavených a každá z~týchto schém musela čeliť útokom, ktoré sa snažili vodoznak poškodiť alebo odstrániť. Medzi rôzne útoky patrí aj print-scan útok, ktorý sa snaží vodoznak poškodiť tým, že sa chránený obraz vytlačí a následne naskenuje. Čeliť tomuto útoku je zložité, pretože sa menia hodnoty pixelov a taktiež je zmenená pozícia pôvodných pixelov. Chen a Lin \cite{Chen} navrhujú vodoznačiaci systém, ktorý využíva diskrétnu kosínusovú transformáciu pre farebné obrazy. Efektívnym integrovaním troch komponent, červenej, zelenej a modrej, navrhovaný systém vykazuje lepšiu robustnosť proti rôznym útokom vrátane útoku print-scan.
 
-Viacero výskumníkov pracovalo na štúdiách ohľadom extrahovania vodoznaku z~vytlačeného obrázku pomocou skenovania. Tieto systémy sú odolné voči print-scan procesu. Avšak tieto systémy vykazujú niektoré obmedzenia a slabé stránky v~situáciách keď obrázky nie sú jednoducho skenovateľné za účelom overenia obrázku. Práve preto Lee, Ting, a Wu \cite{Lee2016} definovali nový spôsob spracovania obrazu, ktorý nazvali print-and-photo (PP) proces. Táto technika je vhodná zvlášť v~takých prípadoch, keď nie je možné použiť skener, napríklad pri obrázku na pohybujúcom sa autobuse. Takto získané zábery môžu byť otočené, môžu mať zmenenú veľkosť, skreslenú sýtosť, či perspektívne skreslenie po PP procese. V~navrhovanom systéme je spôsob vkladania a extrakcie vodoznaku založený na modifikácii a porovnaní rádovej veľkosti stredných hodnôt DCT v~RGB farebnom modeli. Vodoznak môže byť extrahovaný z~vodoznačeného obrazu bez použitia pôvodného obrazu alebo akýchkoľvek doplňujúcich informácii. Pre zlepšenie robustnosti využívajú QR kód pre korekciu chýb.
+Viacero výskumníkov pracovalo na štúdiách ohľadom extrahovania vodoznaku z~vytlačeného obrázku pomocou skenovania. Tieto systémy sú odolné voči print-scan procesu. Avšak tieto systémy vykazujú niektoré obmedzenia a slabé stránky v~situáciách, keď obrázky nie sú jednoducho skenovateľné za účelom overenia obrázku. Práve preto Lee, Ting, a Wu \cite{Lee2016} definovali nový spôsob spracovania obrazu, ktorý nazvali print-and-photo (PP) proces. Táto technika je vhodná zvlášť v~takých prípadoch, keď nie je možné použiť skener, napríklad pri obrázku na pohybujúcom sa autobuse. Takto získané zábery môžu byť otočené, môžu mať zmenenú veľkosť, skreslenú sýtosť, či perspektívne skreslenie po PP procese. V~navrhovanom systéme je spôsob vkladania a extrakcie vodoznaku založený na modifikácii a~porovnaní rádovej veľkosti stredných hodnôt DCT v~RGB farebnom modeli. Vodoznak môže byť extrahovaný z~vodoznačeného obrazu bez použitia pôvodného obrazu alebo akýchkoľvek doplňujúcich informácii. Pre zlepšenie robustnosti využívajú QR kód pre korekciu chýb.
 
 \subsection{Využitie genetických algoritmov a reverzibility}
-Golshan a Mohammadi \cite{Golshan} prezentujú možnosť ako zlepšiť robustnosť a neviditeľnosť vodoznaku. Využívajú algoritmus singulárnej dekompozície (SVD) pre vytvorenie kompromisu medzi robustnosťou a neviditeľnosťou. V~navrhovanom algortime najprv rozdelia obraz do blokov o~veľkosti 8 x 8. Následne sú niektoré špeciálne bloky transformované pomocou diskrétnej kosínusovej trasformácie (DCT). Ďalším krokom metódy je použitie SVD dekompozície nad DCT koeficientami špeciálnych blokov. Nakoniec je do obrazu vložený binárny vodoznak do singulárnych hodnôt pomocou kvantizačnej metódy. Hlavnou vlastnosťou navrhovanej metódy je však využitie genetického algoritmu pre generovanie binárneho vodoznaku. Genetický algoritmus pomáha vyriešiť optimalizačný problém medzi robustnosťou a neviditeľnosťou. Vodoznak teda môže byť premenný a prispôsobený obrazu. Simuláciou dokázali, že navrhovaná metóda vykazuje robustnosť proti rôznym útokom v~porovnaní s~nedávnou podobnou existujúcou prácou.
+Golshan a Mohammadi \cite{Golshan} prezentujú možnosť ako zlepšiť robustnosť a neviditeľnosť vodoznaku. Využívajú algoritmus singulárnej dekompozície (SVD) pre vytvorenie kompromisu medzi robustnosťou a neviditeľnosťou. V~navrhovanom algoritme najprv rozdelia obraz do blokov o~veľkosti 8 x 8. Následne sú niektoré špeciálne bloky transformované pomocou diskrétnej kosínusovej trasformácie (DCT). Ďalším krokom metódy je použitie SVD dekompozície nad DCT koeficientami špeciálnych blokov. Nakoniec je do obrazu vložený binárny vodoznak do singulárnych hodnôt pomocou kvantizačnej metódy. Hlavnou vlastnosťou navrhovanej metódy je však využitie genetického algoritmu pre generovanie binárneho vodoznaku. Genetický algoritmus pomáha vyriešiť optimalizačný problém medzi robustnosťou a neviditeľnosťou. Vodoznak teda môže byť premenný a prispôsobený obrazu. Simuláciou dokázali, že navrhovaná metóda vykazuje robustnosť proti rôznym útokom v~porovnaní s~nedávnou podobnou existujúcou prácou.
 
-Moderné systémy pre zdravotnú starostlivosť sú založené na spravovaní diagnostických informácií pacientov cez E-health. K~E-health patria aplikácie zdravotnej starostlivosti komunikujúce cez internet, ktoré zahŕňajú prenos osobných zdravotných záznamov alebo informácii, teda bezpečnostné hrozby spôsobujú veľké obavy. Anusudha, Venkateswaran a Valarmathi \cite{Anusudha2017} preto predstavujú hybridnú vodoznačiacu a šifrovaciu techniku pre ochranu autorských práv a pre overenie lekárskych obrázkov. Lekársky obrázok je vodoznačený vo vlnkovej doméne, kde elektronický zdravotný záznam (Electronic Health Record - EHR) je použitý ako vodoznak a logo nemocnice ako referenčný obrázok. K~vylepšeniu bezpečnosti obrazu využívajú výhody šifrovania založeného na DNA a genetických algoritmoch. Genetický algoritmus je využitý pre nájdenie najlepšej DNA masky, deje sa to iteratívne, kým nie sú splnené požadované podmienky.
+Moderné systémy pre zdravotnú starostlivosť sú založené na spravovaní diagnostických informácií pacientov cez E-health. K~E-health patria aplikácie zdravotnej starostlivosti komunikujúce cez internet, ktoré zahŕňajú prenos osobných zdravotných záznamov alebo informácii, teda bezpečnostné hrozby spôsobujú veľké obavy. Anusudha, Venkateswaran a~Valarmathi \cite{Anusudha2017} preto predstavujú hybridnú vodoznačiacu a šifrovaciu techniku pre ochranu autorských práv a pre overenie lekárskych obrázkov. Lekársky obrázok je vodoznačený vo vlnkovej doméne, kde elektronický zdravotný záznam (Electronic Health Record - EHR) je použitý ako vodoznak a logo nemocnice ako referenčný obrázok. K~vylepšeniu bezpečnosti obrazu využívajú výhody šifrovania založeného na DNA a genetických algoritmoch. Genetický algoritmus je využitý pre nájdenie najlepšej DNA masky, deje sa to iteratívne, kým nie sú splnené požadované podmienky.
 
 Pre konvenčné aplikácie nie je potrebné zachovať pôvodný obrázok po extrahovaní vodoznaku. Ak hovoríme o~reverzibilnom algoritme pre ukrývanie dát, tak musí byť možné obnoviť a extrahovať pôvodný obsah aj vložené tajné dáta. Chen a Huang \cite{Chen2014} navrhli watermarking systém, ktorý využíva genetický algoritmus a je aj reverzibilný. Genetický algoritmus využívajú pre zvolenie vhodného základu z~prípustných základov vlnkovej transformácie za účelom zvýšiť robustnosť.
 Experimentálnymi výsledkami ukazujú, že navrhovaná metóda je odolná voči niektorým formám spracovania obrazu, ako napríklad zaostrenie.
@@ -287,38 +290,39 @@ V~poslednej dobe bolo prezentovaných niekoľko algoritmov pre audio watermarkin
 
 Na základe domény pre vkladanie vodoznaku môžeme techniky pre watermarking audia rozdeliť do dvoch skupín, techniky využívajúce časovú doménu a metódy, ktoré fungujú vo frekvenčnej doméne. \cite{Fallahpour}
 
-Zaujímavým riešením pre odstrániteľný watermarking systém pre audio sa vo svojej práci venovali Dutta, Gupta a Pathak \cite{Dutta2014}. V~tejto práci navrhli systém, ktorý využíva nevnímateľný aj vnímateľný watermarking. Na začiatku máme audio súbor, ktorého časť chceme urobiť dostupnú pre prehratie ukážky a do zvyšnej časti vložíme vnímateľný vodoznak. Tento vodoznak je vložený do vybraných DCT koeficientov audio signálu tak, aby pomer signálu a šumu bol vysoký, čo zabezpečí aby to bolo počuteľne otravné pre ľudský sluch. Ak je audio súbor dešifrovaný privátnym kľúčom, tak sa do tohto súboru vloží nový vodoznak, ktorý je nevnímateľný pre ľudský sluch. Vďaka tomuto dvojitému watermarkingu vytvorili nový spôsob pre kontrolu nad právami pre digitálne audio súbory.
+Zaujímavému riešeniu pre odstrániteľný watermarking systém pre audio sa vo svojej práci venovali Dutta, Gupta a Pathak \cite{Dutta2014}. V~tejto práci navrhli systém, ktorý využíva nevnímateľný aj vnímateľný watermarking. Na začiatku máme audio súbor, ktorého časť chceme urobiť dostupnú pre prehratie ukážky a do zvyšnej časti vložíme vnímateľný vodoznak. Tento vodoznak je vložený do vybraných DCT koeficientov audio signálu tak, aby pomer šumu bol vysoký, čo zabezpečí to, aby tento signál bol otravný pre ľudský sluch. Ak je audio súbor dešifrovaný privátnym kľúčom, tak sa do tohto súboru vloží nový vodoznak, ktorý je nevnímateľný pre ľudský sluch. Vďaka tomuto dvojitému watermarkingu vytvorili nový spôsob pre kontrolu nad právami pre digitálne audio súbory.
 
 Zamani, Mazdak a Manuf \cite{Zamani2015} vymysleli v~roku 2015 nový algoritmus pre krehký watermarking audio súborov, ktorý je založený na genetickom koncepte. Zmyslom tohto algoritmu je redukovať skreslenie spôsobené substitúciou najmenej významných bitov za tajnú informáciu, zlepšiť pomer signálu ku šumu (PSNR) a zvýšiť kapacitu.
 
 Fallahpour a Megias \cite{Fallahpour} sa zamerali na výskum novej vysoko kapacitnej audio watermarking metódy pracujúcej vo frekvenčnej doméne. Ku vkladaniu vodoznaku využívajú rýchlu Fourierovu transformáciu (Fast Fourier transform - FFT). Kľúčovou myšlienkou je rozdeliť FFT spektrum do krátkych rámcov a zmeniť veľkosť hodnoty FFT vzoriek na základe priemernej hodnoty vzoriek v~každom rámci. Autori uvádzajú, že táto metóda má vysokú kapacitu bez významného vnímateľného skreslenia a ponúka robustnosť proti pridávaniu šumu, filtrovaniu a MPEG kompresii.
 
-Jednou z~tém výskumu audio watermarkingu je aj reverzibilita. Reverzibilné audio watermarking systémy sú konfrontované s~problémami ako nízky pomer signálu ku šumu alebo nízka kapacita. Nový reverzibilný audio watermarking systém predstavujú Wang, Xie a Chen \cite{Wang2014}. Táto metóda je založená na vylepšenej expanzii predikcie chyby (prediction error expansion) a na posune histogramu. Pre optimalizáciu koeficientov pre predikciu využívajú evolučný algoritmus.
+Jednou z~tém výskumu audio watermarkingu je aj reverzibilita. Reverzibilné audio watermarking systémy sú konfrontované s~problémami ako nízky pomer signálu ku šumu alebo nízka kapacita. Nový reverzibilný audio watermarking systém predstavujú Wang, Xie a~Chen \cite{Wang2014}. Táto metóda je založená na vylepšenej expanzii predikcie chyby (prediction error expansion) a na posune histogramu. Pre optimalizáciu koeficientov pre predikciu využívajú evolučný algoritmus.
 
 \section{Video watermarking}
-Výskum sa okrem watermarkingu obrazu a audiu venuje taktiež videu. Ukážeme si dva rôzne prípady watermarkingu videa. Prvý z~nich sa venuje problému akým spôsobom vložiť vodoznak do videa s~HEVC (High Efficiency Video Coding) kódovaním. Druhá metóda sa okrem samotného watermarkingu videa zaoberá tiež praktickou aplikáciou na Blu-ray diskoch.
+Výskum sa okrem watermarkingu obrazu a audia venuje taktiež videu. Ukážeme si dva rôzne prípady watermarkingu videa. Prvý z~nich sa venuje problému akým spôsobom vložiť vodoznak do videa s~HEVC (High Efficiency Video Coding) kódovaním. Druhá metóda sa okrem samotného watermarkingu videa zaoberá tiež praktickou aplikáciou na Blu-ray diskoch.
 
-Stále pomerne novým a viac sa rozširujúcim video kodekom je HEVC, ktorý ponúka lepšiu kompresiu v~porovnaním s~jeho predchodcom H.264. Hlavne kvôli tomu, že HEVC môže mať v~budúcnosti široké možnosti využitia, sa Swati, Hayat, Shahid a Pappalardo \cite{Swati2014} rozhodli navrhnúť algoritmus určený pre watermarking tohto kodeku. Prezentovaný algoritmus má mať veľkú kapacitu a má potenciál pre použitie napríklad v~skrývaní metadát pri vysielaní. Vodoznak je vložený do QT (Quantized Transform) koeficientov počas procesu kódovania. Neskôr pri procese dekódovania je vložená správa detegovaná a kompletne extrahovaná. Navrhovaný algoritmus viditeľne neovplyv§uje kvalitu videa a ani nezvyšuje bitrate.
+Stále pomerne novým a viac sa rozširujúcim video kodekom je HEVC, ktorý ponúka lepšiu kompresiu v~porovnaním s~jeho predchodcom H.264. Hlavne kvôli tomu, že HEVC môže mať v~budúcnosti široké možnosti využitia, sa Swati, Hayat, Shahid a Pappalardo \cite{Swati2014} rozhodli navrhnúť algoritmus určený pre watermarking tohto kodeku. Prezentovaný algoritmus má mať veľkú kapacitu a má potenciál pre použitie napríklad v~skrývaní metadát pri vysielaní. Vodoznak je vložený do QT (Quantized Transform) koeficientov počas procesu kódovania. Neskôr pri procese dekódovania je vložená správa detegovaná a kompletne extrahovaná. Navrhovaný algoritmus viditeľne neovplyvňuje kvalitu videa a ani nezvyšuje bitrate.
 
-De Cock, Hofbauer, Stütz, Uhl a Unterweger \cite{DeCock2015} predstavujú framework Pre H.264 Blu-ray watermarking, ktorý operuje na úrovni bitového toku a zachováva dĺžku tohto toku. Okrem popisu prístupu pre vkladanie a detekciu vodoznaku sa venujú možnej kapacite pre rôzne Blu-ray disky na základe charakteristík ich bitového toku. Taktiež sa venujú diskusii o~rôznych návrhových možnostiach a praktických problémoch, ktoré nastávajú pri návrhu watermarking frameworku na priemyselnej úrovni.
+De Cock, Hofbauer, Stütz, Uhl a Unterweger \cite{DeCock2015} predstavujú framework pre H.264 \mbox{Blu-ray} watermarking, ktorý operuje na úrovni bitového toku a zachováva dĺžku tohto toku. Okrem popisu prístupu pre vkladanie a detekciu vodoznaku sa venujú možnej kapacite pre rôzne \mbox{Blu-ray} disky na základe charakteristík ich bitového toku. Taktiež sa venujú diskusii o~rôznych návrhových možnostiach a praktických problémoch, ktoré nastávajú pri návrhu watermarking frameworku na priemyselnej úrovni.
 
 %=========IMPLEMENTÁCIA=======
 \chapter{Návrh implementácie}
 \label{ch-design}
-V~tejto kapitole sa zameriame na návrh implementácie vloženia a extrakcie vodoznaku pomocou QR dekompozície do statického snímku v~odtieňoch šedej ako to bolo prezentované v~článku {\it Fast and robust watermarking in still images based on QR decomposition od Yashar Naderahmadian a Saied Hosseini-Khayat} \cite{QRdecomposition}.
+V~tejto kapitole sa zameriame na návrh implementácie vloženia a extrakcie vodoznaku pomocou QR rozkladu\footnote{QR decomposition \url{https://en.wikipedia.org/wiki/QR_decomposition}} do statického snímku v~odtieňoch šedej ako to bolo prezentované v~článku {\it Fast and robust watermarking in still images based on QR decomposition od Yashar Naderahmadian a Saied Hosseini-Khayat} \cite{QRdecomposition}.
 
-Najprv sa budeme venovať tomu čo je to QR dekompozícia matice. Potom sa v~sekciách \ref{kniznice} a \ref{vlozenie} budeme venovať navrhovanému programovaciemu jazyku, použitým knižniciam pre implementáciu a samotnému spôsobu vloženia a extrakcie vodoznaku v~priestorovej doméne. Následne navrhneme spôsob testovania a konkrétnych útokov voči ktorým budeme testovať odolnosť navrhnutého princípu vloženia vodoznaku.
+Najprv sa budeme venovať tomu čo je to QR rozklad matice. Potom sa v~sekciách \ref{kniznice} a \ref{vlozenie} budeme venovať navrhovanému programovaciemu jazyku, použitým knižniciam pre implementáciu a samotnému spôsobu vloženia a extrakcie vodoznaku v~priestorovej doméne. Následne navrhneme spôsob testovania a konkrétnych útokov voči ktorým budeme testovať odolnosť navrhnutého princípu vloženia vodoznaku.
 
-Navrhovaným riešením je použiť obrázok vo formáte JPEG, ktorý bude potrebné previesť do odtieňov šedej a následne vytvoriť 2D maticu s~hodnotami intenzity čiernej farby v~rozsahu 0-255.
+Navrhovaným riešením je použiť obrázok vo formáte JPEG, ktorý bude potrebné previesť do odtieňov šedej a následne vytvoriť 2D maticu s~hodnotami intenzity čiernej v~rozsahu 0-255.
 
 \section{QR rozklad}
-V~lineárnej algebre je QR rozklad matice A~definovaný ako rozklad tejto matice na súčin 2 matíc. Z~nich jedna je ortogonálna (alebo má aspoň vzájomne ortonormálne stĺpce) a druhá je v~hornom trojuholníkovom tvare. Teda v~QR rozklade je $m \times n$ matice A~reprezentovaný ako:
+Pri definícii QR rozkladu vychádzame z poznatkov uvedených v článku \cite{QRdecomposition}.
+V~lineárnej algebre je QR rozklad matice A~definovaný ako rozklad tejto matice na súčin 2 matíc. Z~nich jedna je ortogonálna (alebo má aspoň vzájomne ortonormálne stĺpce) a druhá je v~hornom trojuholníkovom tvare. Teda v~QR rozklade je $m \times n$ matica A~reprezentovaná ako:
 
 \begin{equation}
 A = QR
 \end{equation}
 
-Kde $Q$ je $m \times n$ matice s~ortonormálnymi stĺpcami a $R$ je matica v~hornom trojuholníkovom tvare. V~tejto metóde sú stĺpce matice $Q$ vytvorené zo stĺpcov matice $A$ pomocou Gramovho-Schmidtovho procesu. Ak $A$ a $Q$, dané ako $A=[a_1, a_2, \dots, a_n ], Q=[q_1, q_2, \dots, q_n ] $ sú vektormi stĺpcov, potom matica $R$ môže byť vypočítaná ako:
+Kde $Q$ je $m \times n$ matica s~ortonormálnymi stĺpcami a $R$ je matica v~hornom trojuholníkovom tvare. V~tejto metóde sú stĺpce matice $Q$ vytvorené zo stĺpcov matice $A$ pomocou Gramovho-Schmidtovho procesu. Ak $A$ a $Q$, dané ako $A=[a_1, a_2, \dots, a_n ], Q=[q_1, q_2, \dots, q_n ] $ sú vektormi stĺpcov, potom matica $R$ môže byť vypočítaná ako:
 
 \begin{equation}
 R = \begin{bmatrix} 
@@ -337,14 +341,15 @@ Vlastnosť matice $R$, ktorá bola dokázaná v~\cite{QRdecomposition} a ktorá 
 \section{Programovací jazyk a knižnice} \label{kniznice}
 Pre implementáciu sa ponúka viacero možností aký programovací jazyk využiť. Teoreticky je pre riešenie problému watermarkingu možné využiť ľubovoľný programovací jazyk. Avšak pre jednoduchšie riešenie je vhodné, ak pre tento jazyk existuje knižnica alebo modul, ktorý ponúka zjednodušenú manipuláciu s~obrazom a maticami.
 
-Často využívaným jazykom pre riešenie tohto typu problému je jazyk MATLAB, čo je zreteľné aj vo viacerých vedeckých článkoch zameraných na watermarking. Výhodou tohto jazyka spočíva v~jednoduchej manipulácii s~maticami. Obsahuje množstvo vstavaných funkcií pre prácu s~obrázkami a spomínanými manipuláciami matíc.
+Často využívaným jazykom pre riešenie tohto typu problému je jazyk MATLAB, čo je zreteľné aj vo viacerých vedeckých článkoch zameraných na watermarking. Výhoda tohto jazyka spočíva v~jednoduchej manipulácii s~maticami. Obsahuje množstvo vstavaných funkcií pre prácu s~obrázkami a spomínanými manipuláciami matíc.
 
-Ďalším jazykom, ktorý by pripadal v~úvahu, by mohol byť jazyk Python. Momentálne patrí medzi jeden z~najviac rozšíreným jazykom. Je to multi-paradigmový jazyk, čiže je možné využiť rôzne programátorské prístupy ako objektovo orientované, štruktúrované ale aj funkcionálne programovanie. Jeho veľkou výhodou je jednoduché rozširovanie o~množstvo modulov. Pre watermarking sa núka možnosť použiť moduly ako PIL (Python Imaging Library) alebo OpenCV.
+Ďalším jazykom, ktorý by pripadal v~úvahu, by mohol byť jazyk Python. Momentálne patrí medzi jeden z~najviac rozšírených jazykov. Je to multi-paradigmový jazyk, čiže je možné využiť rôzne programátorské prístupy ako objektovo orientované, štruktúrované ale aj funkcionálne programovanie. Jeho veľkou výhodou je jednoduché rozširovanie o~množstvo modulov. Pre watermarking sa núka možnosť použiť moduly ako PIL (Python Imaging Library) alebo OpenCV.
 
-Jazykom ktorý budeme využívať pri tejto implementácii bude jazyk C++. Keďže tento jazyk neumožňuje prácu s~obrazom, sme nútení siahnuť po knižniciach, ktoré nám to zjednodušia. Prvým problémom ktorý potrebujeme vyriešiť je načítanie obrázku vo formáte JPEG, jeho dekompresia a následné uloženie do matice, nad ktorou budeme vykonávať QR dekompozíciu. Existuje viacero knižníc pre C++, pomocou ktorých sme schopní túto úlohu riešiť. Medzi najviac používané knižnice pre manipuláciu obrazu patria knižnice libjpeg, OpenCV a ImageMagick.
+Jazykom ktorý budeme využívať pri tejto implementácii bude jazyk C++. Keďže tento jazyk neumožňuje prácu s~obrazom, sme nútení siahnuť po knižniciach, ktoré nám to zjednodušia. Prvým problémom ktorý potrebujeme vyriešiť je načítanie obrázku vo formáte JPEG, jeho dekompresia a následné uloženie do matice, nad ktorou budeme vykonávať QR rozklad. Existuje viacero knižníc pre C++, pomocou ktorých sme schopní túto úlohu riešiť. Medzi najviac používané knižnice pre manipuláciu obrazu patria knižnice libjpeg, OpenCV a ImageMagick.
 Knižnica libjpeg je distribuovaná ako voľný softvér so zdrojovým kódom pod Custom BSD-like licenciou, je napísaná v~jazyku C a umožňuje prácu s~obrazom vo formáte JPEG. Implementuje JPEG kodek a ďalšie rôzne utility pre narábanie s~dátami vo formáte JPEG. Originálny variant je udržovaný a vydávaný Independent JPEG Group (IJC), čiže sa jedná o~štandard pre spracovávanie JPEG formátu. Dôležitou vlastnosťou, ktorú budeme potrebovať hlavne pre testovanie odolnosti vodoznaku, je možnosť prispôsobiť kvalitu kompresie.
 
 OpenCV (Open Source Computer Vision) je vydávaná pod BSD licenciou a poskytuje rozhranie pre jazyky C, C++, Python a Java. Hlavným zameraním tejto knižnice je počítačové videnie v~reálnom čase. Pre potreby načítania obrazu do matice je táto knižnica zbytočne robustná.
+
 ImageMagick je knižnica pre manipuláciu obrazu v~rôznych formátoch (viac ako 200). Umožňuje rôzne operácie nad obrazom, ako napríklad zmenu veľkosti, zrkadlenie, rotáciu, prispôsobenie farieb, kreslenie alebo aplikovanie špeciálnych efektov. Funkcionalita ImageMagick je typicky využívaná prostredníctvom príkazového riadku alebo je možné využiť API pre jeden z~množstva programovacích jazykov medzi ktoré patria napríklad jazyky C, C++, PHP alebo Python. Pre jazyk C++ je vytvorené objektovo orientované API s~názvom Magick++. Túto knižnicu je vhodné použiť na načítanie a uloženie obrázku, ako aj pri testovaní kvality vodoznačiacej metódy pri transformáciách a kompresii do formátu JPEG.
 
 \section{Vloženie a extrakcia vodoznaku} \label{vlozenie}
@@ -353,8 +358,8 @@ Prvou požiadavkou pre aplikovanie vodoznaku je potreba vytvorenia matice z~nosn
 Následne môžeme pristúpiť k~samotnej procedúre vloženia, ktorá je nasledujúca:
 \begin{enumerate}
 \item Nosný obraz rozdelíme do neprekrývajúcich sa blokov o~veľkosti $8\times8$.
-\item QR dekompozícia sa aplikuje na každý $8\times8$ blok.
-\item Vodoznak sa vloží do prvého riadku matice $R$ použitím vzorca \ref{embed}, kde $C$ je vybraný koeficient matice kde sa vloží bit vodoznaku, $C'$ je zmenený koeficient, $S$ je zvolená sila vodoznaku, $T1$ a $T2$ sú prahové hodnoty a $\omega$ je bit vodoznaku.
+\item QR rozklad sa aplikuje na každý $8\times8$ blok.
+\item Vodoznak sa vloží do prvého riadku matice $R$ použitím vzorca \ref{embed}, kde $C$ je vybraný koeficient matice kam sa vloží bit vodoznaku, $C'$ je zmenený koeficient, $S$ je zvolená sila vodoznaku, $T1$ a $T2$ sú prahové hodnoty a $\omega$ je bit vodoznaku.
 
 \begin{equation} \label{embed}
 \left \{
@@ -364,7 +369,7 @@ Následne môžeme pristúpiť k~samotnej procedúre vloženia, ktorá je nasled
   \end{tabular}
 \right.
 \end{equation}
-\item Aplikujeme inverznú QR dekompozíciu pre každý blok.
+\item Aplikujeme inverzný QR rozklad pre každý blok.
 \end{enumerate}
 
 Po prevedení tejto procedúry je potrebné zo vzniknutej matice, ktorá už obsahuje aj vodoznak, vytvoriť opäť obrázok napríklad vo formáte JPEG, čo dosiahneme pomocou knižnice Magick++.
@@ -372,7 +377,7 @@ Po prevedení tejto procedúry je potrebné zo vzniknutej matice, ktorá už obs
 Procedúra pre extrakciu vodoznaku je takáto:
 \begin{enumerate}
 \item Vodoznačený obraz je rozdelený do neprekrývajúcich sa blokov o~veľkosti $8\times8$.
-\item QR dekompozícia sa aplikuje na každý blok.
+\item QR rozklad sa aplikuje na každý blok.
 \item Vodoznak bude extrahovaný z~prvého riadku matice $R$ za použitia vzorca \ref{extract}, kde $\omega'$ je extrahovaný vodoznak a $C''$ je vodoznačený koeficient po možných útokoch. Je zrejmé, že táto procedúra nepotrebuje originálny nosný obraz, a preto je tento navrhovaný princíp označovaný ako {\it blind}.
 \end{enumerate}
 
@@ -403,7 +408,7 @@ V~priestorovej doméne je nosný obraz rozdelený do blokov o~rozmeroch $8\times
 \frac{\frac{N\times N}{8\times 8}\times 8}{N \times N} =  0,125(bit/pixel)
 \end{equation}
 
-Ako je uvedené v~\cite{QRdecomposition}, kapacita tejto metódy je vyššia ako vo všetkých spomínaných blind metódach, ktoré sú spomenuté v~rovnakom článku. V~tomto článku sa tvrdí, že kapacita tejto metódy je porovnateľná s~non-blind metódami.
+Ako je uvedené v~\cite{QRdecomposition}, kapacita tejto metódy je vyššia ako vo všetkých spomínaných blind metódach, ktoré sú spomenuté v~rovnakom článku. V~rovnakom článku sa tvrdí, že kapacita tejto metódy je porovnateľná s~non-blind metódami.
 
 \section{Návrh testovania}
 Testovanie kvality navrhovanej metódy watermarkingu bude prevádzané prostredníctvom zmeny sily watermarkingu S~a útokov na vodoznačený obraz. Následnou extrakciou vodoznaku môžeme merať odolnosť tejto metódy voči konkrétnym útokom.
@@ -412,15 +417,15 @@ K~vyhodnoteniu kvality po prevedení útokov budeme využívať normalizovanú k
 
 Kvalita vodoznačeného obrazu bude meraná prostredníctvom pomeru medzi maximálnou možnou energiou signálu a energiou šumu (PSNR). Ako minimálna akceptovateľná hodnota PSNR je považovaná hodnota 37-40dB. Hodnota PSNR sa znižuje so zvyšujúcou sa silou vodoznaku S. Preto musíme nájsť maximálnu hodnotu S~takú, aby nebolo možné pozorovať viditeľné vizuálne zmeny na vodoznačenom obraze. Na druhej strane musí byť hodnota S~dostatočne vysoká na to aby bolo schopné vodoznak extrahovať bez chyby pri nepoužití žiadneho útoku. Vodoznak je extrahovaný bez chyby ak je NC = 1.
 
-Testovať budeme odolnosť vodoznaku voči rotácii obrazu, zmene veľkosti a orezaniu. Použijeme taktiež útoky vo forme vloženia šumu do obrazu, konkrétne Gaussovský šum. Ako ďalšia forma útoku bude použité filtrovanie. Vykonávať budeme mediánové filtrovanie a filtrovanie priemerovaním. Keďže podľa \cite{QRdecomposition} má mať tento systém zvýšenú odolnosť proti JPEG kompresii, tak overíme odolnosť tejto metódy proti rôznym úrovniam JPEG kompresie.
+Testovať budeme odolnosť vodoznaku voči rotácii obrazu, zmene veľkosti a orezaniu. Použijeme taktiež útoky vo forme vloženia šumu do obrazu, napríklad Gaussovský šum. Ako ďalšia forma útoku bude použité filtrovanie. Vykonávať budeme mediánové filtrovanie a filtrovanie priemerovaním. Keďže podľa \cite{QRdecomposition} má mať tento systém zvýšenú odolnosť proti JPEG kompresii, tak overíme odolnosť tejto metódy proti rôznym úrovniam JPEG kompresie.
 
 \chapter{Implementácia}
 \label{ch-impl}
-Nasledujúca kapitola sa venuje implementácii navrhovaného algoritmu pre digitálne vodoznačenie obrazu. V~tejto kapitole budú vysvetlené jednotlivé funkcie použité v~programe a taktiež odlišnosti medzi návrhom a implementovaným algoritmom.
+Nasledujúca kapitola sa venuje implementácii navrhovaného algoritmu pre digitálne vodoznačenie obrazu. V~tejto kapitole budú vysvetlené jednotlivé funkcie použité v~programe a~taktiež odlišnosti medzi návrhom a implementovaným algoritmom.
 
 Ako už bolo spomenuté v~návrhu v~kapitole \ref{kniznice}, algoritmus je implementovaný v~jazyku C++ s~využitím knižnice ImageMagick. Konkrétne s~využitím objektovo orientovaného API tejto knižnice pre jazyk C++, Magick++. Táto knižnica je postačujúca pre načítanie a uloženie obrazu, ako aj pre transformácie výsledného obrazu, pridanie šumu alebo nastavenie úrovne kompresie. Preto nie je potrebné použiť žiadne ďalšie knižnice.
 
-Časť \ref{impl:load} sa venuje načítaniu jednotlivých pixelov vstupného obrázku do požadovanej dátovej štruktúry tak, aby bola ďalšia práca s~týmito hodnotami čo najjednoduchšia. Nasleduje časť \ref{impl:divide}, ktorá sa zaoberá problémom rozdelenia načítaného obrazu do blokov o~veľkosti $8\times8$ a následného spojenia týchto blokov po prevedení QR rozkladu a vloženia alebo extrakcie vodoznaku. Implementáciu algoritmu pre QR rozklad nájdeme v~\ref{impl:qr}. Proces vkladania a extrakcie vodoznaku a nutné zmeny v~týchto algoritmoch oproti návrhu nájdeme v~\ref{impl:embed-extract}. Nakoniec v~\ref{impl:help} sa nachádza návod na použitie výsledného programu.
+Časť \ref{impl:load} sa venuje načítaniu jednotlivých pixelov vstupného obrázku do požadovanej dátovej štruktúry tak, aby bola ďalšia práca s~týmito hodnotami čo najjednoduchšia. Nasleduje časť \ref{impl:divide}, ktorá sa zaoberá problémom rozdelenia načítaného obrazu do blokov o~veľkosti $8\times8$ a následného spojenia týchto blokov po prevedení QR rozkladu a vloženia alebo extrakcie vodoznaku. Implementáciu algoritmu pre QR rozklad nájdeme v~\ref{impl:qr}. Proces vkladania a extrakcie vodoznaku a nutné zmeny v~týchto algoritmoch oproti návrhu nájdeme v~\ref{impl:embed-extract}. Nakoniec v~časti \ref{impl:help} sa nachádza návod na použitie výsledného programu.
 
 \section{Načítanie dát}
 \label{impl:load}
@@ -483,7 +488,7 @@ void concat_blocks(matrix_t<T> &result, matrix3d_t<T> &blocks)
 
 \section{QR rozklad}
 \label{impl:qr}
-Táto časť sa venuje algoritmu QR rozkladu\footnote{QR decomposition \url{https://en.wikipedia.org/wiki/QR_decomposition}}, ktorý je základom pre navrhovaný systém vodoznačenia. QR rozklad môžeme dosiahnuť viacerými spôsobmi. Najjednoduchším algoritmom pre vytvorenie QR rozkladu z~matice je {\it Gramov-Schmidtov proces}\footnote{Gram-Schmidt process \url{https://en.wikipedia.org/wiki/Gram–Schmidt_process}}. Medzi ďalšie spôsoby patrí {\it Householderova transformácia}\footnote{Householder transformation \url{https://en.wikipedia.org/wiki/Householder_transformation}} a {\it Givensova rotácia}\footnote{Givens rotation \url{https://en.wikipedia.org/wiki/Givens_rotation}}.
+Táto časť sa venuje algoritmu QR rozkladu, ktorý je základom pre navrhovaný systém vodoznačenia. QR rozklad môžeme dosiahnuť viacerými spôsobmi. Najjednoduchším algoritmom pre vytvorenie QR rozkladu z~matice je {\it Gramov-Schmidtov proces}\footnote{Gram-Schmidt process \url{https://en.wikipedia.org/wiki/Gram–Schmidt_process}}. Medzi ďalšie spôsoby patrí {\it Householderova transformácia}\footnote{Householder transformation \url{https://en.wikipedia.org/wiki/Householder_transformation}} a {\it Givensova rotácia}\footnote{Givens rotation \url{https://en.wikipedia.org/wiki/Givens_rotation}}.
 
 Pre našu implementáciu algoritmu QR rozkladu sme využili {\it Gramov-Schmidtov} proces, konkrétne jeho modifikovanú variantu. Výhodou modifikovaného Gramovho-Schmidtovho procesu je, že je oproti klasickej verzii numericky stabilný\footnote{Numerical stability \url{https://en.wikipedia.org/wiki/Numerical_stability}} 
 
@@ -494,11 +499,11 @@ void gram_schmidt(matrix_t<T> &matrix, matrix3d_t<T> &q_list,
                   matrix3d_t<T> &r_list)
 \end{lstlisting}
 
-Keďže QR rozklad je potrebné vytvoriť nad stĺpcami matice $A$, čiže nad transponovanou maticou $A$, bolo potrebné implementovať funkciu {\tt mat\_transpose()} pre transpozíciu matice dátového typu {\tt matrix\_t}. V~algoritme QR rozkladu je potrebné taktiež vypočítať skalárny súčin vektorov a normalizovaný vektor. Pre skalárny súčin slúži funkcia {\tt dot\_product()} a pre normalizáciu funkcia {\tt normalize()}.
+Keďže QR rozklad je potrebné vytvoriť nad stĺpcami matice $A$, čiže nad transponovanou maticou $A$, bolo potrebné implementovať funkciu {\tt mat\_transpose()} pre transpozíciu matice dátového typu {\tt matrix\_t}. V~algoritme QR rozkladu je potrebné taktiež vypočítať skalárny súčin vektorov a normalizovaný vektor. Pre skalárny súčin slúži funkcia {\tt dot\_product()} a~pre normalizáciu funkcia {\tt normalize()}.
 \clearpage
 \section{Algoritmus vkladania a extrakcie}
 \label{impl:embed-extract}
-Po prevedení QR rozkladu nad každým blokom môžeme pristúpiť ku vkladaniu vodoznaku do nosného obrazu. Vodoznaku vkladáme do matice $R$, konkrétne do jej prvého riadku.
+Po prevedení QR rozkladu nad každým blokom môžeme pristúpiť ku vkladaniu vodoznaku do nosného obrazu. Vodoznak vkladáme do matice $R$, konkrétne do jej prvého riadku.
 
 Za účelom vkladania vodoznaku do obrazu sme implementovali funkciu {\tt embed()}, ktorej deklarácia je takáto:
 \begin{lstlisting}
@@ -538,9 +543,9 @@ Vzorec pre extrakciu vodoznaku \ref{extract} bolo potrebné upraviť podobne ako
 
 \section{Použitie programu}
 \label{impl:help}
-Výsledný program s~názvom {\tt watermarking} dokáže vložiť zadaný vodoznak do obrázku v~jednom z~vyše 200 podporovaných obrazových formátov, ktoré sú podporované knižnicou ImageMagick. Program dokáže extrahovať vodoznak z~obrázku a porovnať ho s~referenčným vodoznakom. Umožnené je tiež spustenie programu s~útokmi na vodoznačený obraz, ktoré sa využijú v~kapitole \ref{testy}.
+Výsledný program s~názvom {\tt watermarking} dokáže vložiť zadaný vodoznak do obrázku v~jednom z~vyše 200 podporovaných obrazových formátov, ktoré sú podporované knižnicou ImageMagick. Program dokáže extrahovať vodoznak z~obrázku a porovnať ho s~referenčným vodoznakom. Umožnené je tiež spustenie programu s~útokmi na vodoznačený obraz, ktoré budú využité v~kapitole \ref{testy}.
 
-Prepínače sú nasledovné:
+Prepínače programu sú nasledovné:
 \begin{itemize}
 \item {\verb|--help|} - zobrazí nápovedu k~programu
 \item {\verb|--input FILE|} - určenie vstupného obrázku
@@ -555,23 +560,23 @@ Prepínače sú nasledovné:
 \item {\verb|--statistics|} - zobrazenie NC extrahovaného a pôvodného vodoznaku a PSNR medzi originálnym a vodoznačeným obrazom 
 \end{itemize}
 
-Jediným povinným argumentom sú prepínače \verb|--input| a \verb|--wm-input|, ktorými špecifikujeme vstupné dáta. Pri neuvedení prepínačov \verb|--embed| a \verb|--extract| sa prevedie vloženie a aj následná extrakcia vodoznaku. Použitie prepínača \verb|--statistics| je podmienené extrakciou vodoznaku, čiže je potrebné použiť prepínač \verb|--extract| alebo nepoužiť žiaden z~prepínačov \verb|--embed, --extract|.
+Jedinými povinnými argumentmi sú prepínače \verb|--input| a \verb|--wm-input|, ktorými špecifikujeme vstupné dáta. Pri neuvedení prepínačov \verb|--embed| a \verb|--extract| sa prevedie vloženie a aj následná extrakcia vodoznaku. Použitie prepínača \verb|--statistics| je podmienené extrakciou vodoznaku, čiže je potrebné použiť prepínač \verb|--extract| alebo nepoužiť žiaden z~prepínačov \verb|--embed, --extract|.
 
 
 \chapter{Testy a výsledky} \label{testy}
 Jednou z~hlavných vlastností vodoznaku okrem jeho kapacity a nevnímateľnosti je jeho robustnosť. V~prípade použitia vodoznaku pre ochranu autorských práv je táto vlastnosť nesmierne dôležitá. Môžeme mať vodoznačiacu metódu, ktorá má vysokú kapacitu a ktorá dokáže do obrazu vložiť vodoznak, ktorý je ľudským okom nepostrehnuteľný, ale ak je tento vodoznak možné poškodiť bežným spracovaním obrazu natoľko, že nie je čitateľný, tak takáto metóda nebude vhodná napríklad pre ochranu autorských práv.
 
-Práve preto sa táto kapitola venuje testovaniu implementovanej metódy watermarkingu. Pre účely testovania program umožňuje použiť prepínač \verb|--attack|, ktorý vykoná všetky útoky zobrazené v~nasledujúcich podkapitolách.
-Testované budú rôzne metódy vylepšenia obrázku \ref{enhance} a vkladania šumu \ref{noise}. V~rámci overovania odolnosti taktiež otestujeme tento algoritmus voči zaostreniu obrazu a ekvalizácii histogramu. Následne vyskúšame robustnosť algoritmu proti transformáciám ako sú rotácia alebo zmena veľkosti \ref{transform}. Na záver podrobíme testovaný obrázok JPEG kompresii \ref{compress}.
+Práve preto sa táto kapitola venuje testovaniu implementovanej metódy watermarkingu. Pre účely testovania implementovaný program umožňuje použiť prepínač \verb|--attack|, ktorý vykoná všetky útoky zobrazené v~nasledujúcich podkapitolách.
+Testované budú rôzne metódy vylepšenia obrázku v~časti \ref{enhance} a vkladania šumu v~časti \ref{noise}. V~rámci overovania odolnosti taktiež otestujeme tento algoritmus voči zaostreniu obrazu a ekvalizácii histogramu. Následne vyskúšame robustnosť algoritmu proti transformáciám ako sú rotácia alebo zmena veľkosti v~časti \ref{transform}. Na záver v~podkapitole \ref{compress} podrobíme testovaný obrázok JPEG kompresii.
 
 \section{Zvolenie sily vodoznaku}
-Skôr ako sa pustíme do testovania robustnosti tejto metódy musím nájsť vhodnú hodnotu pre silu vodoznačenia. Pre nájdenie vhodnej hodnoty sily vodoznaku $S$ je nutné splniť dve podmienky.
+Skôr ako sa pustíme do testovania robustnosti tejto metódy, musíme nájsť vhodnú hodnotu pre silu vodoznačenia. Pre nájdenie vhodnej hodnoty sily vodoznaku $S$ je nutné splniť dve podmienky.
 
 Prvou podmienkou je, že po vložení vodoznaku musí byť možné bez chyby vodoznak z~obrázku extrahovať. K~porovnaniu vloženého a extrahovaného vodoznaku nám slúži normalizovaná korelácia $NC$, ak je vodoznak extrahovaný bez chyby, tak $NC = 1$.
 
 Druhou podmienkou je neviditeľnosť vodoznaku. So zvyšujúcou sa silou vodoznaku $S$ rastie počet viditeľných zmien v~obraze, preto musíme zvoliť silu vodoznaku tak, aby bola sila vodoznaku čo najvyššia a aby bol vodoznak neviditeľný. K~tomuto účelu slúži pomer medzi energiou signálu a energiou šumu $PSNR$. Vo väčšine článkov sa dozvedáme, že minimálna akceptovateľná hodnota $PSNR$ je 37-40dB.
 
-Na základe vyššie uvedených testov rôznych úrovní sily vodoznaku sme zvolil hodnotu $S=24$, pretože pri hodnote $S=26$ s~$PSNR=37,39dB$ už boli jasne zreteľné zmeny v~obraze. 
+Na základe nižšie uvedených testov rôznych úrovní sily vodoznaku v~tabuľke \ref{wm-strength} sme zvolil hodnotu $S=24$, pretože pri hodnote $S=26$ s~$PSNR=37,39dB$ už boli jasne zreteľné zmeny v~obraze. 
 \clearpage
 
 \begin{table}[ht]
@@ -643,7 +648,7 @@ Poissonov šum                          & 0.002 &
 \section{Vylepšenie obrazu} \label{enhance}
 Tabuľka \ref{enhance-table} zobrazuje vykonané vylepšenia obrazu a ich dopad na vložený vodoznak. Ako môžeme vidieť, algoritmus pre vkladanie vodoznaku je robustnejší proti rôznym metódam vyhladzovania obrazu ako proti útokom, ktoré do obrazu vložia šum.
 
-Z~dát z~tabuľky vidíme, že najväčšiu robustnosť má algoritmus proti mediánovému filtru, kde sme schopní extrahovať nezmenený vodoznak. Pri odstránení šumu, vyhladení a zaostrení je to už horšie, no stále sme schopní rozoznať vodoznak. Z~týchto útokov sa ukázal ako najtvrdší útok ekvalizovaním histogramu, pri ktorom môžeme považovať vodoznak za zničený.
+Z~dát z~tabuľky vidíme, že najväčšiu robustnosť má algoritmus proti mediánovému filtru, kde sme schopní extrahovať nezmenený vodoznak. Pri odstránení šumu, vyhladení a~zaostrení je to už horšie, no stále sme schopní rozoznať vodoznak. Z~týchto útokov sa ukázal ako najtvrdší útok ekvalizovaním histogramu, pri ktorom môžeme považovať vodoznak za zničený.
 \begin{table}[h]
 \centering
 \label{enhance-table}
@@ -728,7 +733,7 @@ Ekvalizácia histogramu                 & 0.031 &
 
 \clearpage
 \section{Transformácie obrazu} \label{transform}
-Tranformácie obrazu sú častým prípadom spracovávania obrazu. V~tejto časti overíme odolnosť vodoznaku proti zmene veľkosti obrázku a rotácii.
+Transformácie obrazu sú častým prípadom spracovávania obrazu. V~tejto časti overíme odolnosť vodoznaku proti zmene veľkosti obrázku a~rotácii.
 \begin{table}[h]
 \centering
 \label{transform-table}
@@ -775,7 +780,7 @@ Rotácia o~10 stupňov                   & 0.160 &
 \caption{Útoky transformáciou obrazu}
 \end{table}
 
-Pri týchto útokoch bolo určenie normalizovanej korelácie zložitejšie ako pri iných útokoch. Dôvodom je, že zmenou veľkosti nosného obrázku sa zmenia aj rozmery extrahovaného vodoznaku. Pre vyriešenie tohto problému sme po extrahovaní vodoznaku tento vodoznaka zväčšili alebo zmenšili na základe pomeru v~akom sa zmenil nosný obraz. Po zmene veľkosti vodoznaku sme však narazili na ďalší problém, zmenou veľkosti vodoznak nadobudol aj iné hodnoty ako 0 alebo 255. Riešením je následné prahovanie extrahovaného vodoznaku.
+Pri týchto útokoch bolo určenie normalizovanej korelácie zložitejšie ako pri iných útokoch. Dôvodom je, že zmenou veľkosti nosného obrázku sa zmenia aj rozmery extrahovaného vodoznaku. Pre vyriešenie tohto problému sme po extrahovaní vodoznaku tento vodoznak zväčšili alebo zmenšili na základe pomeru v~akom sa zmenil nosný obraz. Po zmene veľkosti vodoznaku sme však narazili na ďalší problém, zmenou veľkosti vodoznak nadobudol aj iné hodnoty ako 0 alebo 255. Riešením je následné prahovanie extrahovaného vodoznaku.
 
 Ako vidíme v~tabuľke, pri každom z~týchto útokov bol vodoznak značne poškodený. Najúspešnejšie dopadol test na zväčšenie vodoznačeného obrazu o~25\% s~$NC=0,390$. Naopak najhoršie dopadli obidva útoky rotáciou obrazu. Pri rotáciách je výsledný vodoznak neidentifikovateľný.
 
@@ -831,10 +836,10 @@ Cieľom tejto práce bolo analyzovať možnosti využitia watermarkingu pri ochr
 
 Zo skúmania súčasného stavu môžeme na základe počtu publikovaných vedeckých článkov zhodnotiť, že watermarking je stále aktuálnou témou výskumu. Vo väčšine publikácií stále pretrváva použitie watermarkingu pre statický obraz, no objavujú sa aj diela, ktoré predstavujú návrhy systémov pre ochranu iných typov multimédií. Zaujímavým je napríklad využívanie genetických algoritmov pre vytvorenie optimálneho vodoznaku.
 
-Pri našej implementácii systéme pre vkladanie a extrakciu vodoznaku sme využili návrh algoritmu prezentovaný v \cite{QRdecomposition}, ktorý využíva QR rozklad pre ukrytie vodoznaku do nosného obrázku. Tento algoritmus bol využitý hlavne kvôli deklarovanej zvýšenej odolnosti tejto metódy proti JPEG kompresii. Na rozdiel od článku v ktorom bol tento prístup prezentovaný sme využili maximálnu možnú kapacitu metódy. Použili sme iný nosný obrázok do ktorého bol vodoznak vkladaný a tiež sme použili iný vodoznak. Tieto zmeny mohli viesť k rozdielnym výsledkom našej implementácie.
+Pri našej implementácii systému pre vkladanie a extrakciu vodoznaku sme využili návrh algoritmu prezentovaný v~\cite{QRdecomposition}, ktorý využíva QR rozklad pre ukrytie vodoznaku do nosného obrázku. Tento algoritmus bol využitý hlavne kvôli deklarovanej zvýšenej odolnosti tejto metódy proti JPEG kompresii. Na rozdiel od článku v~ktorom bol tento prístup prezentovaný, sme využili maximálnu možnú kapacitu metódy. Použili sme iný nosný obrázok do ktorého bol vodoznak vkladaný a tiež sme použili iný vodoznak. Tieto zmeny mohli viesť k~rozdielnym výsledkom našej implementácie.
 
-Výsledkom práce je fungujúci systém schopný vložiť a extrahovať vodoznak. Nosný obrázok v odtieňoch šedej ako aj vkladaný čiernobiely vodoznak môže byť v jednom z vyše 200 podporovaných formátov. Pri testovaní našej implementácie sme využili nosný obrázok vo formáte JPEG a vodoznak vo formáte PBM. Systém je naprogramovaný v jazyku C++ s využitím knižnice ImageMagick, ktorá slúži pre spracovávanie obrazu.
+Výsledkom práce je fungujúci systém schopný vložiť a extrahovať vodoznak. Nosný obrázok v~odtieňoch šedej, ako aj vkladaný čiernobiely vodoznak môže byť v~jednom z~vyše 200 podporovaných formátov. Pri testovaní našej implementácie sme využili nosný obrázok vo formáte JPEG a vodoznak vo formáte PBM. Systém je naprogramovaný v~jazyku C++ s~využitím knižnice ImageMagick, ktorá slúži pre spracovávanie obrazu.
 
-Pri testovaní prezentovaného riešenia sme zvolili ako najvhodnejšiu hodnotu sily vodoznaku $S=24$, pri ktorej bol pomer energie signálu k energii šumu $PSNR=37,86dB$. Následne bolo implementované riešenie podrobené testom. Z testov, ktoré útočili na vodoznačený obraz vložením šumu sme zistili, že algoritmus sa dokáže vysporiadať iba s vložením šumu s rovnomerným rozložením. Pri testoch za účelom vylepšenia obrazu sme zistili, že najlepšie obstál test s využitím mediánového filtrovania, kedy bol extrahovaný vodoznak totožný s vloženým vodoznakom. Naopak po prevedení ekvalizácie histogramu môžeme vložený vodoznak považovať za zničený. Pri skúmaní odolnosti proti zmene veľkosti obrázku a rotácii najlepšie dopadol útok, ktorý vodoznačený obrázok zväčšil o 25\%. Z útokov pomocou JPEG kompresie konštatujeme, že ešte pri použití 50\% kompresii sme schopní extrahovaný vodoznak vizuálne rozpoznať.
+Pri testovaní prezentovaného riešenia sme zvolili ako najvhodnejšiu hodnotu sily vodoznaku $S=24$, pri ktorej bol pomer energie signálu k~energii šumu $PSNR=37,86dB$. Následne bolo implementované riešenie podrobené testom. Z~testov, ktoré útočili na vodoznačený obraz vložením šumu sme zistili, že algoritmus sa dokáže vysporiadať iba s~vložením šumu s~rovnomerným rozložením. Pri testoch za účelom vylepšenia obrazu sme zistili, že najlepšie obstál test s~využitím mediánového filtrovania, kedy bol extrahovaný vodoznak totožný s~vloženým vodoznakom. Naopak po prevedení ekvalizácie histogramu môžeme vložený vodoznak považovať za zničený. Pri skúmaní odolnosti proti zmene veľkosti obrázku a rotácii najlepšie dopadol útok, ktorý vodoznačený obrázok zväčšil o~25\%. Z~útokov pomocou JPEG kompresie konštatujeme, že ešte pri použití 50\% kompresii sme schopní extrahovaný vodoznak vizuálne rozpoznať.
 
-Implementované riešenie bolo preložené na operačnom systéme {\it Fedora 24} prekladačom {\it GCC 6.3.1} a s využitím knižnice {\it ImageMagick} vo verzii {\it 7.0.5-4}.
+Implementované riešenie bolo preložené a testované na operačnom systéme {\it Fedora 24} s~prekladačom {\it GCC 6.3.1} a s~využitím knižnice {\it ImageMagick} vo verzii {\it 7.0.5-4}.
