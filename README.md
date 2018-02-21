@@ -16,7 +16,7 @@ identify -version
 
 Before compiling it is neccessary to set environmental variable `PKG_CONFIG_PATH`:
 ``` bash
-export PKG_CONFIG_PATH =/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ```
 
 Maybe you will need to configure dynamic linker run-time bindings
